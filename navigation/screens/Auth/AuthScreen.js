@@ -5,6 +5,7 @@ import { View, Text, TextInput } from 'react-native';
 export default function Auth({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isValid, setIsValid] = useState(true);
 
   const handleLogIn = () => {
     navigation.reset({
@@ -13,14 +14,28 @@ export default function Auth({ navigation }) {
     });
   };
 
+  const validateEmail = email => {
+    const emailRegex = /\S+@\S+\.\S+/;
+    return emailRegex.test(email);
+  };
+
+  const handleEmailChange = email => {
+    setEmail(email);
+    setIsValid(validateEmail(email));
+  };
+
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <TextInput
         style={{ height: 40, width: 200 , borderColor: 'gray', borderWidth: 1 }}
-        onChangeText={email => setEmail(email)}
+        onChangeText={handleEmailChange}
         value={email}
         placeholder='Email'
+        keyboardType='email-address'
       />
+      {!isValid && (
+        <Text style={{ color: 'red' }}>Please enter a valid email address</Text>
+      )}
       <TextInput
         style={{ height: 40, width: 200 , borderColor: 'gray', borderWidth: 1 }}
         onChangeText={password => setPassword(password)}
@@ -32,7 +47,6 @@ export default function Auth({ navigation }) {
       <Text
         onPress={password? handleLogIn : null}
         style={{ fontSize: 26, fontWeight: 'bold' }}>Log in</Text>
-      {/* <Text>Auth Screen</Text> */}
     </View>
   );
 }

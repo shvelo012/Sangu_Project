@@ -5,8 +5,8 @@ export default function Table({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text
-        onPress={() => navigation.navigate('Home')}
-        style={{ fontSize: 26, fontWeight: 'bold' }}>Settings Screen</Text>
+        // onPress={() => navigation.navigate('Home')}
+        style={{ fontSize: 26, fontWeight: 'bold' }}>Table Screen</Text>
     </View>
   );
 }

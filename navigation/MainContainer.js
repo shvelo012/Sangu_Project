@@ -84,7 +84,7 @@ export default function MainContainer() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name={AuthName} component={Auth} />
+        <Stack.Screen name={AuthName} component={Auth} options={{ headerShown: false }} />
         <Stack.Screen name="Dashboard" component={Tabs} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
