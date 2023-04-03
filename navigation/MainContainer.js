@@ -17,6 +17,7 @@ import Profile from './screens/ProfileScreen';
 import Finances from './screens/FinancesScreen';
 import Exams from './screens/ExamsScreen';
 import Documents from './screens/DocumentsScren';
+import Auth from './screens/AuthScreen';
 
 
 const homeName = 'Home';
@@ -28,6 +29,7 @@ const ProfileName = 'Profile';
 const FinancesName = 'Finances';
 const ExamsName = 'Exams';
 const DocumentsName = 'Documents';
+const AuthName = 'Auth';
 
 
 const Tab = createBottomTabNavigator();
@@ -47,37 +49,46 @@ function DetailsStack() {
   );
 }
 
+function Tabs() {
+  return (
+    <Tab.Navigator
+      initialRouteName={homeName}
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+          let rn = route.name;
+
+          if (rn === homeName) {
+            iconName = focused ? 'home' : 'home-outline';
+          } else if (rn === detailsName) {
+            iconName = focused ? 'list' : 'list-outline';
+          } else if (rn === settingsName) {
+            iconName = focused ? 'settings' : 'settings-outline';
+          } else if (rn === calendarName) {
+            iconName = focused ? 'calendar' : 'calendar-outline';
+          }
+
+          return <Ionicons name={iconName} size={size} color={color} />
+        },
+      })} >
+      <Tab.Screen name={homeName} component={Home} />
+      <Tab.Screen name={calendarName} component={Calendar} />
+      <Tab.Screen name={settingsName} component={Settings} />
+      <Tab.Screen name={detailsName} component={DetailsStack} />
+
+    </Tab.Navigator>
+  )
+}
+
 
 
 export default function MainContainer() {
   return (
     <NavigationContainer>
-      <Tab.Navigator
-        initialRouteName={homeName}
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
-            let iconName;
-            let rn = route.name;
-
-            if (rn === homeName) {
-              iconName = focused ? 'home' : 'home-outline';
-            } else if (rn === detailsName) {
-              iconName = focused ? 'list' : 'list-outline';
-            } else if (rn === settingsName) {
-              iconName = focused ? 'settings' : 'settings-outline';
-            } else if (rn === calendarName) {
-              iconName = focused ? 'calendar' : 'calendar-outline';
-            }
-
-            return <Ionicons name={iconName} size={size} color={color} />
-          },
-        })} >
-        <Tab.Screen name={homeName} component={Home} />
-        <Tab.Screen name={calendarName} component={Calendar} />
-        <Tab.Screen name={settingsName} component={Settings} />
-        <Tab.Screen name={detailsName} component={DetailsStack} />
-
-      </Tab.Navigator>
+      <Stack.Navigator>
+        <Stack.Screen name={AuthName} component={Auth}/>
+        <Stack.Screen name="Dashboard" component={Tabs} />
+      </Stack.Navigator>
     </NavigationContainer>
   )
 }
