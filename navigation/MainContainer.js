@@ -10,7 +10,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 //screens
 import Home from './screens/HomeScreen'
 import Details from './screens/DetailsScreen'
-import Settings from './screens/SettingsScreen'
+import Table from './screens/SettingsScreen'
 import Calendar from './screens/CalendarScreen';
 import StudentCard from './screens/StudentCardScreen';
 import Profile from './screens/ProfileScreen';
@@ -22,7 +22,7 @@ import Auth from './screens/AuthScreen';
 
 const homeName = 'Home';
 const detailsName = 'Details';
-const settingsName = 'Settings';
+const tableName = 'Table';
 const calendarName = 'Calendar';
 const StudentCardName = 'StudentCard';
 const ProfileName = 'Profile';
@@ -39,7 +39,7 @@ const Stack = createNativeStackNavigator();
 function DetailsStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name={detailsName} component={Details} />
+      <Stack.Screen name={detailsName} component={Details} options={{ headerShown: false }} />
       <Stack.Screen name={StudentCardName} component={StudentCard} />
       <Stack.Screen name={ProfileName} component={Profile} />
       <Stack.Screen name={FinancesName} component={Finances} />
@@ -62,32 +62,30 @@ function Tabs() {
             iconName = focused ? 'home' : 'home-outline';
           } else if (rn === detailsName) {
             iconName = focused ? 'list' : 'list-outline';
-          } else if (rn === settingsName) {
-            iconName = focused ? 'settings' : 'settings-outline';
+          } else if (rn === tableName) {
+            iconName = focused ? 'tablet-landscape' : 'tablet-landscape-outline';
           } else if (rn === calendarName) {
             iconName = focused ? 'calendar' : 'calendar-outline';
           }
-
           return <Ionicons name={iconName} size={size} color={color} />
         },
       })} >
-      <Tab.Screen name={homeName} component={Home} />
-      <Tab.Screen name={calendarName} component={Calendar} />
-      <Tab.Screen name={settingsName} component={Settings} />
-      <Tab.Screen name={detailsName} component={DetailsStack} />
+      <Tab.Screen name={homeName} component={Home} options={{ headerShown: false }} />
+      <Tab.Screen name={calendarName} component={Calendar} options={{ headerShown: false }} />
+      <Tab.Screen name={tableName} component={Table} options={{ headerShown: false }} />
+      <Tab.Screen name={detailsName} component={DetailsStack} options={{ headerShown: false }} />
 
     </Tab.Navigator>
   )
 }
 
 
-
 export default function MainContainer() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name={AuthName} component={Auth}/>
-        <Stack.Screen name="Dashboard" component={Tabs} />
+        <Stack.Screen name={AuthName} component={Auth} />
+        <Stack.Screen name="Dashboard" component={Tabs} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   )
