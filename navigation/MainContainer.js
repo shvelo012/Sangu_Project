@@ -8,16 +8,16 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
 //screens
-import Home from './screens/HomeScreen'
-import Details from './screens/DetailsScreen'
-import Table from './screens/SettingsScreen'
-import Calendar from './screens/CalendarScreen';
-import StudentCard from './screens/StudentCardScreen';
-import Profile from './screens/ProfileScreen';
-import Finances from './screens/FinancesScreen';
-import Exams from './screens/ExamsScreen';
-import Documents from './screens/DocumentsScren';
-import Auth from './screens/AuthScreen';
+import Home from './screens/Home/HomeScreen'
+import Details from './screens/Details/DetailsScreen'
+import Table from './screens/Table/TableScreen'
+import Calendar from './screens/Calendar/CalendarScreen';
+import StudentCard from './screens/StudentCard/StudentCardScreen';
+import Profile from './screens/Profile/ProfileScreen';
+import Finances from './screens/Finances/FinancesScreen';
+import Exams from './screens/Exams/ExamsScreen';
+import Documents from './screens/Documents/DocumentsScren';
+import Auth from './screens/Auth/AuthScreen';
 
 
 const homeName = 'Home';
