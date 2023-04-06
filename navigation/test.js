@@ -81,3 +81,76 @@
 // }
 
 // // export default App;
+
+// import React, {useContext, useState} from "react";
+// import {Button, StyleSheet, Text, TextInput, Touchable, TouchableOpacity, View, Image} from "react-native";
+// import { Linking} from 'react-native'
+// import {AuthContext} from "../../context/AuthContext";
+// const LoginScreen = ({navigtaion}) => {
+//     const [email,setEmail] = useState(null);
+//     const [password,setPassword] = useState(null);
+//     const val = useContext(AuthContext);
+//     return (
+//         <View style={styles.container}>
+//             <Image
+//                 style={styles.img}
+//                 source={require('/Users/nikolosdolidze/WebstormProjects/untitled/Sangu_Project/assets/Sangu.png')}
+//             />
+//             <View style={styles.wrapper}>
+//                 <Text>{val}</Text>
+//                 <TextInput style={styles.input} placeholder="ელ-ფოსტა " value={email} onChangeText={text => setEmail(text)}/>
+//                 <TextInput style={styles.input} placeholder="პაროლი" value={password} onChangeText={text => setPassword(text)} secureTextEntry/>
+
+//                 <Button title='შესვლა' color="#EA5455"/>
+
+//                 <View style={{flexDirection: 'row', marginTop: 20}}>
+//                     <Text>დaგავიწყდა პაროლი?</Text>
+//                     <TouchableOpacity onPress={handlePress}>
+//                         <Text style={styles.link}> პაროლის აღდგენა</Text>
+//                     </TouchableOpacity>
+//                 </View>
+
+//             </View>
+//         </View>
+//     )
+// }
+
+// const styles = StyleSheet.create(
+//     {
+//         container: {
+//             flex: 1,
+//             alignItems: 'center',
+//             justifyContent: 'center',
+//         },
+//         wrapper: {
+//             width: '80%'
+//         },
+//         input: {
+//             marginBottom: 12,
+//             borderWidth: 1,
+//             borderColor: '#bbb',
+//             borderRadius: 5,
+//             fontSize: 18,
+//             padding: 10,
+//             paddingHorizontal: 14,
+//         },
+//         link: {
+//             color: 'blue'
+//         },
+//         img: {
+//             width: 100,
+//             height: 100,
+//             textAlign:"center",
+//             marginBottom:48,
+
+//         },
+//         buttonHover:{
+
+// }
+//     });
+
+
+// const handlePress = () => {
+//     Linking.openURL('https://ums.sangu.edu.ge/#!/reset');
+// };
+// export default LoginScreen;

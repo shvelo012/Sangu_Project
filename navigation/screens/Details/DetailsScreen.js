@@ -3,6 +3,8 @@ import { View, Text, Button, Linking } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 
 const handlePress = () => {
@@ -11,12 +13,24 @@ const handlePress = () => {
 
 
 export default function Details({ navigation }) {
-  const handleLogOut = () => {
+  const handleLogOut = async () => {
+    await clearAsyncStorage();
     navigation.reset({
       index: 0,
       routes: [{ name: 'Auth' }],
     });
   };
+
+  async function clearAsyncStorage() {
+    try {
+      await AsyncStorage.clear();
+      console.log('AsyncStorage successfully cleared!');
+    } catch (error) {
+      console.error('Error clearing AsyncStorage: ', error);
+    }
+  }
+
+
 
 
   return (

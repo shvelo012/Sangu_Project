@@ -1,13 +1,39 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { View, Text, TextInput } from 'react-native';
+import { useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 export default function Auth({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isValid, setIsValid] = useState(true);
+  const [data, setData] = useState('');
+  const [dataCheck, setDataCheck] = useState(null);
 
-  const handleLogIn = () => {
+  const fetchData = async () => {
+    try {
+      const result = await AsyncStorage.getItem(email);
+      console.log('Data fetched from AsyncStorage:', result);
+      return result;
+    } catch (error) {
+      console.log('Error fetching data from AsyncStorage:', error);
+    }
+  };
+  console.log(fetchData);
+
+  useEffect(() => {
+    fetchData().then((result) => {
+      setDataCheck(result);
+    });
+  }, []);
+
+
+  const handleLogIn = async (email, password) => {
+    await saveString('email', email);
+    await saveString('password', password);
+    await checkAsyncStorage()
     navigation.reset({
       index: 0,
       routes: [{ name: 'Dashboard' }],
@@ -24,10 +50,34 @@ export default function Auth({ navigation }) {
     setIsValid(validateEmail(email));
   };
 
+  const handlePassworChange = password => {
+    setPassword(password);
+  };
+
+  const saveString = async (key, value) => {
+    try {
+      await AsyncStorage.setItem(key.toString(), value.toString());
+      console.log(`Saved ${value} to ${key}`);
+    } catch (error) {
+      console.log(`Error saving ${value} to ${key}`);
+    }
+  };
+
+  const checkAsyncStorage = async () => {
+    try {
+      const allKeys = await AsyncStorage.getAllKeys();
+      setData(allKeys);
+      console.log('All keys:', allKeys);
+
+    } catch {
+      console.log(`Error checking AsyncStorage`);
+    }
+  };
+
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <TextInput
-        style={{ height: 40, width: 200 , borderColor: 'gray', borderWidth: 1 }}
+        style={{ height: 40, width: 200, borderColor: 'gray', borderWidth: 1 }}
         onChangeText={handleEmailChange}
         value={email}
         placeholder='Email'
@@ -37,16 +87,19 @@ export default function Auth({ navigation }) {
         <Text style={{ color: 'red' }}>Please enter a valid email address</Text>
       )}
       <TextInput
-        style={{ height: 40, width: 200 , borderColor: 'gray', borderWidth: 1 }}
-        onChangeText={password => setPassword(password)}
+        style={{ height: 40, width: 200, borderColor: 'gray', borderWidth: 1 }}
+        onChangeText={handlePassworChange}
         value={password}
         placeholder='Password'
         secureTextEntry={true}
       />
-      
+
       <Text
-        onPress={password? handleLogIn : null}
-        style={{ fontSize: 26, fontWeight: 'bold' }}>Log in</Text>
+        onPress={() => handleLogIn(email, password)}
+
+        style={{ fontSize: 26, fontWeight: 'bold' }}>
+        Log in
+      </Text>
     </View>
   );
 }
