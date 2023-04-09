@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { View, Text, TextInput } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -21,7 +22,6 @@ export default function Auth({ navigation }) {
       console.log('Error fetching data from AsyncStorage:', error);
     }
   };
-  console.log(fetchData);
 
   useEffect(() => {
     fetchData().then((result) => {
@@ -75,7 +75,7 @@ export default function Auth({ navigation }) {
   };
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View  style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <TextInput
         style={{ height: 40, width: 200, borderColor: 'gray', borderWidth: 1 }}
         onChangeText={handleEmailChange}

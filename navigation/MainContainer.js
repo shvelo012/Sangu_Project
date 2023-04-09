@@ -39,7 +39,7 @@ const Stack = createNativeStackNavigator();
 function DetailsStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name={detailsName} component={Details} options={{ headerShown: false }} />
+      <Stack.Screen name='insideDetails' component={Details} options={{ headerShown: false }} />
       <Stack.Screen name={StudentCardName} component={StudentCard} />
       <Stack.Screen name={ProfileName} component={Profile} />
       <Stack.Screen name={FinancesName} component={Finances} />
