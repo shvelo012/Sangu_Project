@@ -5967,6 +5967,11 @@ react-native-codegen@^0.71.5:
     jscodeshift "^0.13.1"
     nullthrows "^1.1.1"
 
+react-native-form-component@^2.6.10:
+  version "2.6.10"
+  resolved "https://registry.npmjs.org/react-native-form-component/-/react-native-form-component-2.6.10.tgz"
+  integrity sha512-GmKTkdbb6S+hTXJ+jF73dU7CmzeA2csVWGhIqVKBe+sI1jNpRFo6qgOGOtIK1A3T7g+6Zs7Y1acYABAGCj15vA==
+
 "react-native-gesture-handler@>= 1.0.0":
   version "2.9.0"
   resolved "https://registry.npmjs.org/react-native-gesture-handler/-/react-native-gesture-handler-2.9.0.tgz"

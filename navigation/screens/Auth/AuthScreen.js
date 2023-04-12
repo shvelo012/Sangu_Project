@@ -1,7 +1,15 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { View, Text, TextInput } from 'react-native';
-import { StyleSheet } from 'react-native';
+import {
+  View, Text, TextInput, 
+  KeyboardAvoidingView, 
+  StyleSheet, 
+  TouchableWithoutFeedback,
+  Keyboard, 
+  TouchableOpacity
+
+} from 'react-native';
+// import { StyleSheet } from 'react-native';
 import { useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -75,31 +83,99 @@ export default function Auth({ navigation }) {
   };
 
   return (
-    <View  style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <TextInput
-        style={{ height: 40, width: 200, borderColor: 'gray', borderWidth: 1 }}
-        onChangeText={handleEmailChange}
-        value={email}
-        placeholder='Email'
-        keyboardType='email-address'
-      />
-      {!isValid && (
-        <Text style={{ color: 'red' }}>Please enter a valid email address</Text>
-      )}
-      <TextInput
-        style={{ height: 40, width: 200, borderColor: 'gray', borderWidth: 1 }}
-        onChangeText={handlePassworChange}
-        value={password}
-        placeholder='Password'
-        secureTextEntry={true}
-      />
-
-      <Text
-        onPress={() => handleLogIn(email, password)}
-
-        style={{ fontSize: 26, fontWeight: 'bold' }}>
-        Log in
-      </Text>
-    </View>
+      <View style={{ flex: 1, justifyContent: 'center', backgroundColor: 'white' }}>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          style={styles.container}>
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <View style={styles.inner}>
+              <Text style={styles.header}>Login</Text>
+              <Text style={styles.txt} >Email</Text>
+              <TextInput
+                placeholder='Example@sangu.edu.ge'
+                style={styles.textInput}
+                onChangeText={handleEmailChange}
+                value={email}
+                keyboardType='email-address'
+              />
+              <Text style={styles.txt}>Password</Text>
+              <TextInput
+                placeholder='********'
+                style={styles.textInput}
+                onChangeText={handlePassworChange}
+                value={password}
+                secureTextEntry={true}
+              />
+              <View style={{ alignItems: 'flex-start' }}>
+                <Text style={styles.forgoTxt} >Forgot password?</Text>
+              </View>
+              <View>
+                <TouchableOpacity style={styles.btnContainer} onPress={() => handleLogIn(email, password)}>
+                  <Text style={styles.buttonText} >Login</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </TouchableWithoutFeedback>
+        </KeyboardAvoidingView>
+      </View>
   );
+
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  inner: {
+    padding: 24,
+    flex: 1,
+  },
+  header: {
+    fontFamily: 'Helvetica',
+    fontStyle: 'normal',
+    fontSize: 24,
+    color: '#111111',
+    textAlign: 'center',
+    fontSize: 36,
+    marginBottom: 48,
+  },
+  textInput: {
+    backgroundColor: 'rgba(249, 249, 249, 0.8)',
+    padding: 8,
+    borderWidth: 1,
+    borderColor: '#EEEEEE',
+    borderRadius: 4,
+    transform: [{ rotate: '0.3deg' }],
+    height: 32,
+    marginBottom: 36,
+    marginTop: 10,
+
+  },
+  btnContainer: {
+    alignItems: 'center',
+    backgroundColor: "#e22e44",
+    height: 40,
+    padding: 8,
+    borderRadius: 8,
+    marginTop: 12,
+  },
+
+  txt: {
+    marginStart: 4,
+    color: '#111111',
+
+  },
+  forgoTxt: {
+    marginStart: 4,
+    textAlign: 'left',
+    color: "#e22e44",
+  },
+  buttonText: {
+    color: '#FFFFFF',
+    width: 44,
+    height: 18,
+    fontFamily: 'Helvetica',
+    fontSize: 16,
+    lineHeight: 18,
+  }
+});
