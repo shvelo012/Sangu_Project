@@ -20,10 +20,24 @@ export const styles = StyleSheet.create({
   textInfo: {
     fontWeight: 'bold',
     color: 'black',
-    // width: 40 + '%',
   },
   textScore: {
     color: 'red',
-    // width: 20 + '%',
-  }
+  },
+  modalContainer: {
+    flex: 1,
+    // justifyContent: 'center',
+    alignItems: 'flex-start',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    flexDirection: 'row',
+  },
+  headerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  closeButton: {
+    // alignSelf: 'flex-end',
+  },
+
 });

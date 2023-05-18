@@ -8,21 +8,23 @@ import { styles } from './HomeScreen.styles';
 
 export default function Home({ navigation }) {
   const [data, setData] = useState([]);
-  async function fetchData() {
-    try {
-      const response = await fetch('https://ums.sangu.edu.ge/subject/student/current', {
-        headers: {
-          'Cookie': 'connect.sid=s%3AMGeB2sZ0gNj76Zp_xE8aqOD9iyHANgWQ.qwpvY6sSmIEv71xv7tdRDbTlwd8x429RZPcPoF7U0t0'
-        }
-      });
-      const data = await response.json();
-      console.log(data);
-      console.log("fetched");
-    } catch (error) {
-      console.error(error);
-      console.log("done nothing");
-    }
-  }
+
+  // async function fetchData() {
+  //   try {
+  //     const response = await fetch('https://ums.sangu.edu.ge/subject/student/current', {
+  //       headers: {
+  //         'Cookie': 'connect.sid=s%3AMGeB2sZ0gNj76Zp_xE8aqOD9iyHANgWQ.qwpvY6sSmIEv71xv7tdRDbTlwd8x429RZPcPoF7U0t0'
+  //       }
+  //     });
+  //     const data = await response.json();
+  //     console.log(data);
+  //     console.log("fetched");
+  //   } catch (error) {
+  //     console.error(error);
+  //     console.log("done nothing");
+  //   }
+  // }
+  // setData(jsonData);
   const mass = jsonData;
   const rowData = mass[0].name;
   console.log(rowData);
@@ -31,6 +33,7 @@ export default function Home({ navigation }) {
     subjectNames.push({ subject: mass[i].name, lecturer: mass[i].lecturer, totalScore: mass[i].score });
   }
   console.log(subjectNames);
+  
 
   return (
     <>
