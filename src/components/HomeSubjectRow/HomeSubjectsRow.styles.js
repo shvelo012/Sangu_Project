@@ -24,20 +24,47 @@ export const styles = StyleSheet.create({
   textScore: {
     color: 'red',
   },
+
+  // modal Styles -------------
+
   modalContainer: {
     flex: 1,
-    // justifyContent: 'center',
-    alignItems: 'flex-start',
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    flexDirection: 'row',
+    // flexDirection: 'column',
   },
   headerContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'stretch',
   },
   closeButton: {
     // alignSelf: 'flex-end',
   },
+  modalElements: {
+    // alignContent: 'flex-start',
+    // alignItems: 'flex-start',
+    margin: 3,
+    flexDirection: 'row',
+    // justifyContent: 'space-between',
+    // alignItems: 'center',
+  },
+  scoreContainer: {
+    flex: 1,
+    columnGap: 10,
+
+  },
+  modalName: {
+    // margin: 'auto',
+    // flex: 0.5,
+    // alignContent: 'flex-start',
+    // alignItems: 'flex-start',
+    // justifyContent: 'flex-start',
+  },
+  modalScore: {
+    // marginLeft: 3,
+    alignSelf: 'flex-end',
+  }
 
 });

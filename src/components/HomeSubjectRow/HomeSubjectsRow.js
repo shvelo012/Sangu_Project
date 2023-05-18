@@ -5,7 +5,7 @@ import { styles } from './HomeSubjectsRow.styles';
 
 
 
-const HomeSubjectsRow = ({ subject, info, total }) => {
+const HomeSubjectsRow = ({ subject, info, total, ScoreDetails }) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const openModal = () => {
@@ -33,8 +33,18 @@ const HomeSubjectsRow = ({ subject, info, total }) => {
               <Text>Close</Text>
             </TouchableOpacity>
           </View>
+          <View style={styles.scoreContainer}>
+            {ScoreDetails.map((item, index) => (
+              <View key={index} style={styles.modalElements}>
+                <Text style={styles.modalName} > {item.name}</Text>
+                <Text style={styles.modalScore}>{item.grade ? item.grade.relative : 0} | {item.absolute}</Text>
+              </View>
+            ))
+            }
+          </View>
+
         </View>
-      </Modal>
+      </Modal >
     </>
   );
 };

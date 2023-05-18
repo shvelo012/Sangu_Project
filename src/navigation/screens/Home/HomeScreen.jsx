@@ -27,17 +27,22 @@ export default function Home({ navigation }) {
   // setData(jsonData);
   const mass = jsonData;
   const rowData = mass[0].name;
-  console.log(rowData);
+  // console.log(rowData);
   let subjectNames = [];
   for (i = 0; i < mass.length; i++) {
-    subjectNames.push({ subject: mass[i].name, lecturer: mass[i].lecturer, totalScore: mass[i].score });
+    subjectNames.push({ subject: mass[i].name, lecturer: mass[i].lecturer, totalScore: mass[i].score, details: mass[i].details });
   }
-  console.log(subjectNames);
-  
+  // console.log(subjectNames);
+  if (subjectNames[2].length > 3) {
+    console.log(subjectNames[2].details[0].absolute);
+  }else{
+    console.log('group p');
+  }
   // const details = mass[0]['details']
   // for (i = 0; i < details.length; i++) {
   //   console.log(details[i]);
   // }
+
 
   return (
     <>
@@ -55,6 +60,7 @@ export default function Home({ navigation }) {
             subject={item.subject}
             info={"bad looking icon"}
             total={item.totalScore}
+            ScoreDetails={item.details}
           />
         ))
         }
