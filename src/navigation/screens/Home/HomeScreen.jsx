@@ -34,6 +34,10 @@ export default function Home({ navigation }) {
   }
   console.log(subjectNames);
   
+  // const details = mass[0]['details']
+  // for (i = 0; i < details.length; i++) {
+  //   console.log(details[i]);
+  // }
 
   return (
     <>
