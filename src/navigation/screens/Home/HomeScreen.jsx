@@ -24,24 +24,13 @@ export default function Home({ navigation }) {
   //     console.log("done nothing");
   //   }
   // }
-  // setData(jsonData);
+
+  //Data collecting
   const mass = jsonData;
-  const rowData = mass[0].name;
-  // console.log(rowData);
-  let subjectNames = [];
+  let subjectData = [];
   for (i = 0; i < mass.length; i++) {
-    subjectNames.push({ subject: mass[i].name, lecturer: mass[i].lecturer, totalScore: mass[i].score, details: mass[i].details });
+    subjectData.push({ subject: mass[i].name, lecturer: mass[i].lecturer, totalScore: mass[i].score, details: mass[i].details });
   }
-  // console.log(subjectNames);
-  if (subjectNames[2].length > 3) {
-    console.log(subjectNames[2].details[0].absolute);
-  }else{
-    console.log('group p');
-  }
-  // const details = mass[0]['details']
-  // for (i = 0; i < details.length; i++) {
-  //   console.log(details[i]);
-  // }
 
 
   return (
@@ -54,7 +43,7 @@ export default function Home({ navigation }) {
           მიმდინარე სემესტრი</Text>
       </View>
       <View style={styles.listContainer}>
-        {subjectNames.map((item, index) => (
+        {subjectData.map((item, index) => (
           <HomeSubjectRow
             key={index}
             subject={item.subject}

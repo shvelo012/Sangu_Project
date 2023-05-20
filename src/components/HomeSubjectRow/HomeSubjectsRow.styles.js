@@ -28,6 +28,7 @@ export const styles = StyleSheet.create({
   // modal Styles -------------
 
   modalContainer: {
+    borderWidth: 1,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -38,24 +39,40 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'stretch',
+    // borderWidth: 1,
+    width: 90 + '%',
+    // fontSize: 12,
+  },
+  modalHeader: {
+    color: 'white',
+    fontSize: 18,
   },
   closeButton: {
     // alignSelf: 'flex-end',
+    color: 'red',
+    fontSize: 18,
   },
   modalElements: {
     // alignContent: 'flex-start',
     // alignItems: 'flex-start',
     margin: 3,
     flexDirection: 'row',
+    justifyContent: 'space-between',
     // justifyContent: 'space-between',
     // alignItems: 'center',
   },
   scoreContainer: {
     flex: 1,
-    columnGap: 10,
+    borderWidth: 1,
+    width: 90 + '%',
+    margin: 3,
+    padding: 3,
+    backgroundColor: 'white',
+
 
   },
   modalName: {
+    color: 'black',
     // margin: 'auto',
     // flex: 0.5,
     // alignContent: 'flex-start',
@@ -63,6 +80,7 @@ export const styles = StyleSheet.create({
     // justifyContent: 'flex-start',
   },
   modalScore: {
+    color: 'red',
     // marginLeft: 3,
     alignSelf: 'flex-end',
   }

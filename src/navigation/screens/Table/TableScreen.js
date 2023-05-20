@@ -5,6 +5,12 @@ import { styles } from './TableScreen.styles';
 
 import jsonData from './TableData.json';
 
+const table = jsonData;
+let subjectNames = [];
+// for (i = 0; i < mass.length; i++) {
+//   subjectNames.push({ subject: mass[i].name, lecturer: mass[i].lecturer, totalScore: mass[i].score, details: mass[i].details });
+// }
+
 
 export default function Table({ navigation }) {
   return (
