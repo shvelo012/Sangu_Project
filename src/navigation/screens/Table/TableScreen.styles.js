@@ -6,17 +6,17 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#f9f7ff',
     marginBottom: 50,
-    marginTop: 20
+    marginTop: 20,
   },
   header: {
     fontSize: 26,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   listContainer: {
     justifyContent: 'space-between',
     borderRadius: 6,
     borderWidth: 1,
     margin: 6,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
-})
+});

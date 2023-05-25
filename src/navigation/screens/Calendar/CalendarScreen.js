@@ -7,7 +7,7 @@ export default function Calendar({ navigation }) {
       <Text
         // onPress={() => alert('This is the "Home" screen.')}
         style={{ fontSize: 26, fontWeight: 'bold' }}>Nikolos Calendar screen</Text>
-        
+
     </View>
   );
 }
