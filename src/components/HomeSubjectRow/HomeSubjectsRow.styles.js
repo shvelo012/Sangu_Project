@@ -32,30 +32,34 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+
     // flexDirection: 'column',
   },
   headerContainer: {
+    justifyContent: "space-between",
+    alignItems:"center",
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'stretch',
     // borderWidth: 1,
-    width: 90 + '%',
+    width: 85 + '%',
+    height: 7 + '%',
     // fontSize: 12,
   },
   modalHeader: {
     color: 'white',
-    fontSize: 18,
+    fontSize: 22,
+    fontWeight: 'bold',
   },
+
   closeButton: {
-    // alignSelf: 'flex-end',
-    color: 'red',
-    fontSize: 18,
+    // borderWidth:1,
+    width: 25,
+    height: 25,
   },
   modalElements: {
     // alignContent: 'flex-start',
     // alignItems: 'flex-start',
-    margin: 3,
+    margin: 13,
     flexDirection: 'row',
     justifyContent: 'space-between',
     // justifyContent: 'space-between',
@@ -65,24 +69,30 @@ export const styles = StyleSheet.create({
     flex: 1,
     borderWidth: 1,
     width: 90 + '%',
-    margin: 3,
-    padding: 3,
+    marginTop: 15,
+    margin: 20,
+    padding: 5,
+    justifyContent:"center",
+    alignSelf:"center",
     backgroundColor: 'white',
-
-
+    borderRadius:10,
   },
   modalName: {
+    width:200,
     color: 'black',
+    fontWeight:"bold",
+    fontSize:15,
     // margin: 'auto',
     // flex: 0.5,
     // alignContent: 'flex-start',
     // alignItems: 'flex-start',
     // justifyContent: 'flex-start',
   },
+
   modalScore: {
     color: 'red',
-    // marginLeft: 3,
-    alignSelf: 'flex-end',
-  }
-
+    fontWeight:'bold',
+    fontSize:15,
+    // marginLeft: 1,
+  },
 });
