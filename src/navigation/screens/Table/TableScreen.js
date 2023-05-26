@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { View, Text, ScrollView } from 'react-native';
-import TableSubjectsRow from '../../../components/TableSubjectsRow/TableSubjectsRow';
-import { styles } from './TableScreen.styles';
+import * as React from "react";
+import { View, Text, ScrollView } from "react-native";
+import TableSubjectsRow from "../../../components/TableSubjectsRow/TableSubjectsRow";
+import { styles } from "./TableScreen.styles";
 
-import jsonData from './TableData.json';
+import jsonData from "./TableData.json";
 
 
 // const table = jsonData.map(row => ({
@@ -21,7 +21,7 @@ for (i = 0; i < table.length; i++) {
     lecturer: table[i].sessionGroup.lecturer.user.fullName,
     startTime: table[i].startTime,
     room: [table[i].room.name, table[i].room.building],
-    day: table[i].dayOfWeek
+    day: table[i].dayOfWeek,
   });
 }
 // console.log(tableData);
@@ -29,16 +29,14 @@ const getStartTime = (time) => {
   const date = new Date(time);
   const hours = date.getHours();
   const minutes = date.getMinutes();
-  return hours + ':' + (minutes.toString().length == 1 ? minutes.toString() + "0" : minutes);
+  return hours + ":" + (minutes.toString().length == 1 ? minutes.toString() + "0" : minutes);
 
-}
+};
+
 function getDayOfWeek(day) {
-  const daysOfWeek = ['კვირა', 'ორშაბათი', 'სამშაბათი', 'ოთხშაბათი', 'ხუთშაბათი', 'პარასკევი', 'შაბათი'];
+  const daysOfWeek = ["კვირა", "ორშაბათი", "სამშაბათი", "ოთხშაბათი", "ხუთშაბათი", "პარასკევი", "შაბათი"];
   return daysOfWeek[day];
 }
-
-
-
 
 
 export default function Table({ navigation }) {
@@ -50,16 +48,19 @@ export default function Table({ navigation }) {
           style={styles.header}>ცხრილი</Text>
       </View>
       <ScrollView style={styles.scrollContainer}>
-        <View style={styles.mainContainer}>
-          <Text
-            // onPress={() => navigation.navigate('Home')}
-            style={styles.header}>Table Screen</Text>
-        </View>
+
         <View>
           {tableData.map((item, index) => (
             <View key={index}>
               {index === 0 || item.day !== tableData[index - 1].day ? (
-                <Text>{getDayOfWeek(item.day)}</Text>
+                <>
+                  <Text style={styles.dayOfWeek}>{getDayOfWeek(item.day)}</Text>
+                  <View style={styles.subjectTimeRoomView}>
+                    <Text style={styles.subjectTimeRoom}>საგანი</Text>
+                    <Text style={styles.subjectTimeRoom}>დრო</Text>
+                    <Text style={styles.subjectTimeRoom}>აუდიტორია</Text>
+                  </View>
+                </>
               ) : null}
               <TableSubjectsRow
                 key={index}
@@ -70,6 +71,7 @@ export default function Table({ navigation }) {
                 building={item.room[1]}
               />
             </View>
+
           ))}
         </View>
       </ScrollView>

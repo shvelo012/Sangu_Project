@@ -15,20 +15,7 @@ export const styles = StyleSheet.create({
 
   textSubject: {
     fontWeight: 'bold',
-    width: 45 + '%',
+    width: 40 + '%',
     color: 'black',
   },
-  timeSubject:{
-    fontWeight:"bold",
-    width:20 + '%',
-    color:'black',
-  },
-  roomSubject:{
-    fontWeight:'bold',
-    width:20 + '%',
-    color: 'black',
-    justifyContent:"center",
-    alignContent: 'center',
-  },
-
 })
