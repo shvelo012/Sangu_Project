@@ -4,7 +4,6 @@ export const styles = StyleSheet.create({
   mainContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#f9f7ff',
     marginBottom: 50,
     marginTop: 20,
   },
@@ -19,4 +18,6 @@ export const styles = StyleSheet.create({
     margin: 6,
     backgroundColor: 'white',
   },
+
+
 });
