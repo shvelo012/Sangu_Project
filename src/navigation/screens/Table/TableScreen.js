@@ -5,6 +5,14 @@ import { styles } from './TableScreen.styles';
 
 import jsonData from './TableData.json';
 
+
+// const table = jsonData.map(row => ({
+//   subject: row.sessionGroup.subjectActivation?.subject?.name || 'N/A',
+//   time: row.startTime,
+//   room: row.room?.name || 'N/A',
+//   building: row.room?.building || 'N/A',
+// }));
+
 const table = jsonData;
 let tableData = [];
 for (i = 0; i < table.length; i++) {
@@ -32,10 +40,16 @@ function getDayOfWeek(day) {
 
 
 
+
 export default function Table({ navigation }) {
   return (
     <>
-      <ScrollView>
+      <View style={styles.mainContainer}>
+        <Text
+          // onPress={() => navigation.navigate('Home')}
+          style={styles.header}>ცხრილი</Text>
+      </View>
+      <ScrollView style={styles.scrollContainer}>
         <View style={styles.mainContainer}>
           <Text
             // onPress={() => navigation.navigate('Home')}
@@ -58,9 +72,7 @@ export default function Table({ navigation }) {
             </View>
           ))}
         </View>
-
       </ScrollView>
     </>
-
   );
 }
