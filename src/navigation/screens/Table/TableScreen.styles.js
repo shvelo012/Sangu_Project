@@ -9,6 +9,7 @@ export const styles = StyleSheet.create({
   },
   header: {
     fontSize: 26,
+    color:'black',
     fontWeight: 'bold',
   },
   listContainer: {
@@ -16,8 +17,23 @@ export const styles = StyleSheet.create({
     borderRadius: 6,
     borderWidth: 1,
     margin: 6,
-    backgroundColor: 'white',
+    backgroundColor: 'black',
+  },
+  dayOfWeek:{
+    fontSize:18,
+    alignSelf:'center',
+    color:'black',
+    fontWeight:'bold',
   },
 
-
+  subjectTimeRoomView:{
+    flexDirection:"row",
+    justifyContent:"space-around"
+  },
+  subjectTimeRoom:{
+    marginTop: 20,
+    fontSize:14,
+    color:'#E74646',
+    fontWeight:'bold'
+  },
 });
