@@ -72,8 +72,6 @@ export const styles = StyleSheet.create({
     marginTop: 15,
     margin: 20,
     padding: 5,
-    justifyContent:"center",
-    alignSelf:"center",
     backgroundColor: 'white',
     borderRadius:10,
   },

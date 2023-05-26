@@ -10,11 +10,12 @@ export const styles = StyleSheet.create({
     padding: 10,
     margin: 20,
     // height: 15 + '%',
+    // height: 30 + '%',
   },
 
   textSubject: {
     fontWeight: 'bold',
-    width: 40 + '%',
+    width: 45 + '%',
     color: 'black',
   },
   timeSubject:{
@@ -27,7 +28,7 @@ export const styles = StyleSheet.create({
     width:20 + '%',
     color: 'black',
     justifyContent:"center",
-    alignContent:"center"
+    alignContent: 'center',
   },
 
 })
