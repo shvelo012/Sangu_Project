@@ -1,28 +1,65 @@
 import * as React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import TableSubjectsRow from '../../../components/TableSubjectsRow/TableSubjectsRow';
 import { styles } from './TableScreen.styles';
 
 import jsonData from './TableData.json';
 
 const table = jsonData;
-let subjectNames = [];
-// for (i = 0; i < mass.length; i++) {
-//   subjectNames.push({ subject: mass[i].name, lecturer: mass[i].lecturer, totalScore: mass[i].score, details: mass[i].details });
-// }
+let tableData = [];
+for (i = 0; i < table.length; i++) {
+  tableData.push({
+    subject: table[i].sessionGroup.subjectActivation.subject.name,
+    lecturer: table[i].sessionGroup.lecturer.user.fullName,
+    startTime: table[i].startTime,
+    room: [table[i].room.name, table[i].room.building],
+    day: table[i].dayOfWeek
+  });
+}
+// console.log(tableData);
+const getStartTime = (time) => {
+  const date = new Date(time);
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  return hours + ':' + (minutes.toString().length == 1 ? minutes.toString() + "0" : minutes);
+
+}
+function getDayOfWeek(day) {
+  const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  return daysOfWeek[day];
+}
+
+
 
 
 export default function Table({ navigation }) {
   return (
     <>
-      <View style={styles.mainContainer}>
-        <Text
-          // onPress={() => navigation.navigate('Home')}
-          style={styles.header}>Table Screen</Text>
-      </View>
-      <View style={styles.listContainer}>
-        <TableSubjectsRow subject={"cpp"} time={"13:00"} room={'208'} building={'II'} />
-      </View>
+      <ScrollView>
+        <View style={styles.mainContainer}>
+          <Text
+            // onPress={() => navigation.navigate('Home')}
+            style={styles.header}>Table Screen</Text>
+        </View>
+        <View>
+          {tableData.map((item, index) => (
+            <View key={index}>
+              {index === 0 || item.day !== tableData[index - 1].day ? (
+                <Text>{getDayOfWeek(item.day)}</Text>
+              ) : null}
+              <TableSubjectsRow
+                key={index}
+                day={getDayOfWeek(item.day)}
+                subject={item.subject}
+                time={getStartTime(item.startTime)}
+                room={item.room}
+                building={item.building}
+              />
+            </View>
+          ))}
+        </View>
+
+      </ScrollView>
     </>
 
   );
