@@ -25,7 +25,7 @@ const getStartTime = (time) => {
 
 }
 function getDayOfWeek(day) {
-  const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const daysOfWeek = ['კვირა', 'ორშაბათი', 'სამშაბათი', 'ოთხშაბათი', 'ხუთშაბათი', 'პარასკევი', 'შაბათი'];
   return daysOfWeek[day];
 }
 
@@ -52,8 +52,8 @@ export default function Table({ navigation }) {
                 day={getDayOfWeek(item.day)}
                 subject={item.subject}
                 time={getStartTime(item.startTime)}
-                room={item.room}
-                building={item.building}
+                room={item.room[0]}
+                building={item.room[1]}
               />
             </View>
           ))}
