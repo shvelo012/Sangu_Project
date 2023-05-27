@@ -26,14 +26,18 @@ export const styles = StyleSheet.create({
     fontWeight:'bold',
   },
 
-  subjectTimeRoomView:{
-    flexDirection:"row",
-    justifyContent:"space-around"
+  subjectTimeRoomView: {
+    flexDirection: "row",
+    justifyContent: 'space-around',
+    width:'100%',
   },
-  subjectTimeRoom:{
+  subjectTimeRoom: {
     marginTop: 20,
-    fontSize:14,
-    color:'#E74646',
-    fontWeight:'bold'
+    marginBottom: 20,
+    color: "#E74646",
+    fontWeight: "bold",
+    textAlign:"center",
+    flex:1,
+    borderBottomWidth:0.5,
   },
 });

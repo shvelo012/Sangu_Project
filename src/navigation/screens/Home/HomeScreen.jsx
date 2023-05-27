@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from "react-native";
 import HomeSubjectRow from '../../../components/HomeSubjectRow/HomeSubjectsRow';
 import jsonData from './data.json';
 import { styles } from './HomeScreen.styles';
-
 export default function Home({ navigation }) {
   const [data, setData] = useState([]);
 
@@ -33,7 +32,7 @@ export default function Home({ navigation }) {
             )}
             <HomeSubjectRow
               subject={item.subject}
-              info={"bad looking icon"}
+              info={[require('../../../img/comment.png'),require('../../../img/edit.png'),require('../../../img/idea.png')]}
               total={item.totalScore}
               ScoreDetails={item.details}
             />
