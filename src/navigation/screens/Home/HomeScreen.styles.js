@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { colors } from '../../../colors/colors';
 
 export const styles = StyleSheet.create({
   mainContainer: {
@@ -17,18 +18,19 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     borderRadius: 6,
     borderWidth: 1,
-    backgroundColor: 'white',
+    backgroundColor: colors.white,
   },
   subjectInfoResultView: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
+    textAlign:'center',
     borderBottomWidth: 0.5,
     height: '10%',
   },
   subjectInfoResult: {
     fontSize: 14,
-    color: '#E74646',
+    color: colors.red,
     fontWeight: 'bold',
   },
 });

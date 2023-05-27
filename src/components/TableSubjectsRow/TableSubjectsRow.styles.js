@@ -1,21 +1,20 @@
 import { StyleSheet } from "react-native";
+import { colors } from '../../colors/colors';
 
 export const styles = StyleSheet.create({
+
   container: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     borderBottomWidth: 0.5,
-    alignContent: 'center',
-    alignItems: 'center',
-    padding: 10,
-    margin: 20,
-    // height: 15 + '%',
-    // height: 30 + '%',
+  marginBottom:20,
   },
 
   textSubject: {
-    fontWeight: 'bold',
-    width: 40 + '%',
-    color: 'black',
+    width: '30%',
+    textAlign: "center",
+    fontWeight: "bold",
+    color: "black",
   },
+
 })
