@@ -49,7 +49,7 @@ export default function Table({ navigation }) {
       </View>
       <ScrollView style={styles.scrollContainer}>
 
-        <View>
+        <View style={styles.tableContainer}>
           {tableData.map((item, index) => (
             <View key={index}>
               {index === 0 || item.day !== tableData[index - 1].day ? (
@@ -69,6 +69,7 @@ export default function Table({ navigation }) {
                 time={getStartTime(item.startTime)}
                 room={item.room[0]}
                 building={item.room[1]}
+                isLast={index === tableData.length - 1}
               />
             </View>
 
