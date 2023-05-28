@@ -12,7 +12,7 @@ import {
 // import { StyleSheet } from 'react-native';
 import { useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {styles} from './AuthStyles'
+import {styles} from './Auth.Styles'
 
 
 export default function Auth({ navigation }) {
