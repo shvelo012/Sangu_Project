@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     borderBottomWidth: 0.5,
-    marginBottom:20,
+    marginBottom: 30,
   },
   lastContainer: {
     flexDirection: "row",
@@ -17,9 +17,11 @@ export const styles = StyleSheet.create({
   textSubject: {
     width: "35%",
     textAlign: "center",
-    alignContent:'center',
-    justifyContent:'center',
+    alignContent: "center",
+    alignSelf: "center",
+    justifyContent: "center",
     fontWeight: "bold",
     color: "black",
+
   },
 });
