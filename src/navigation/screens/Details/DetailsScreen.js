@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, Text, Button, Linking, Image } from "react-native";
+import { View, Text, Button, Linking, Image, TouchableOpacity } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
@@ -33,48 +33,48 @@ export default function Details({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <View style={[styles.containerItems, styles.profile]} onPress={() => navigation.navigate("Profile")}>
+      <TouchableOpacity style={[styles.containerItems, styles.profile]} onPress={() => navigation.navigate("Profile")}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Image style={styles.images} source={require('./img/user.png')} />
           <Text style={styles.text}>პროფილი</Text>
         </View>
-      </View>
-      <View style={styles.containerItems} onPress={() => navigation.navigate("StudentCard")}>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.containerItems} onPress={() => navigation.navigate("StudentCard")}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Image style={styles.images} source={require('./img/test.png')} />
           <Text style={styles.text}>სასწავლო ბარათი</Text>
         </View>
-      </View>
-      <View style={styles.containerItems} onPress={() => navigation.navigate("Finances")}>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.containerItems} onPress={() => navigation.navigate("Finances")}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Image style={styles.images} source={require('./img/cash.png')} />
           <Text style={styles.text}>ფინანსები</Text>
         </View>
-      </View>
-      <View style={styles.containerItems} onPress={() => navigation.navigate("Exams")}>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.containerItems} onPress={() => navigation.navigate("Exams")}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Image style={styles.images} source={require('./img/exam.png')} />
           <Text style={styles.text}>გამოცდები</Text>
         </View>
-      </View>
-      <View style={styles.containerItems} onPress={() => navigation.navigate("Documents")}>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.containerItems} onPress={() => navigation.navigate("Documents")}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Image style={styles.images} source={require('./img/paper.png')} />
           <Text style={styles.text}>დოკუმენტები</Text>
         </View>
-      </View>
-      <View style={styles.containerItems} onPress={handlePress}>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.containerItems} onPress={handlePress}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Image style={styles.images} source={require('./img/external-link.png')} />
           <Text style={styles.text}>გზამკვლევი</Text>
         </View>
-      </View>
-      <View style={[styles.containerItems, styles.exit]} onPress={handleLogOut}>
+      </TouchableOpacity>
+      <TouchableOpacity style={[styles.containerItems, styles.exit]} onPress={handleLogOut}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Image style={styles.images} source={require('./img/logout.png')} />
           <Text style={styles.text}>გამოსვლა</Text>
         </View>
-      </View>
+      </TouchableOpacity>
     </View>
 
   );
