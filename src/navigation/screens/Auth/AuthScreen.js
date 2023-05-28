@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { useState } from 'react';
 import {
-  View, Text, TextInput, 
-  KeyboardAvoidingView, 
-  StyleSheet, 
+  View, Text, TextInput,
+  KeyboardAvoidingView,
+  StyleSheet,
   TouchableWithoutFeedback,
-  Keyboard, 
+  Keyboard,
   TouchableOpacity
 
 } from 'react-native';
@@ -82,42 +82,102 @@ export default function Auth({ navigation }) {
     }
   };
 
+//   //-------------
+
+//   const username = 's.shvelidze@sangu.edu.ge';
+//   const password1 = 'shvelo15';
+
+//   const base64Credentials = Buffer.from(`${username}:${password1}`).toString('base64');
+//   const headers = {
+//     Authorization: `Basic ${base64Credentials}`,
+//     'Content-Type': 'application/json',
+//   };
+// // ----------------
+//   const requestBody = {
+//     email: 's.shvelidze@sangu.edu.ge',
+//     password: 'shvelo15',
+//   };
+
+//   const makeRequest = async () => {
+//     try {
+//       const response = await fetch('https://ums.sangu.edu.ge/auth/login', {
+//         method: 'POST',
+//         headers: headers,
+//         body: JSON.stringify(requestBody),
+//       });
+
+//       // Extract and store the cookie value from the response headers
+//       const cookie = extractCookie(response.headers);
+
+//       if (cookie) {
+//         console.log('Cookie:', cookie);
+//       }
+
+//       const data = await response.json();
+//       console.log('Response Data:', data);
+//     } catch (error) {
+//       console.error('Error:', error);
+//     }
+//   };
+
+//   // Function to extract the cookie value from the response headers
+//   const extractCookie = (headers) => {
+//     const cookies = headers.raw()['set-cookie'];
+//     if (cookies && cookies.length > 0) {
+//       const cookie = cookies[0];
+//       const cookieValue = cookie.split(';')[0];
+//       return cookieValue;
+//     }
+//     return null;
+//   };
+
+//   // Call the function to make the request
+//   makeRequest();
+
+  //-------------------
+
+
   return (
-      <View style={{ flex: 1, justifyContent: 'center', backgroundColor: 'white' }}>
-        <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-          style={styles.container}>
-          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <View style={styles.inner}>
-              <Text style={styles.header}>Login</Text>
-              <Text style={styles.txt} >Email</Text>
-              <TextInput
-                placeholder='Example@sangu.edu.ge'
-                style={styles.textInput}
-                onChangeText={handleEmailChange}
-                value={email}
-                keyboardType='email-address'
-              />
-              <Text style={styles.txt}>Password</Text>
-              <TextInput
-                placeholder='********'
-                style={styles.textInput}
-                onChangeText={handlePassworChange}
-                value={password}
-                secureTextEntry={true}
-              />
-              <View style={{ alignItems: 'flex-start' }}>
-                <Text style={styles.forgoTxt} >Forgot password?</Text>
-              </View>
-              <View>
-                <TouchableOpacity style={styles.btnContainer} onPress={() => handleLogIn(email, password)}>
-                  <Text style={styles.buttonText} >Login</Text>
-                </TouchableOpacity>
-              </View>
+    <View style={{ flex: 1, justifyContent: 'center', backgroundColor: 'white' }}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={styles.container}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View style={styles.inner}>
+            <Text style={styles.header}>Login</Text>
+            <Text style={styles.txt} >Email</Text>
+            <TextInput
+              placeholder='Example@sangu.edu.ge'
+              style={styles.textInput}
+              onChangeText={handleEmailChange}
+              value={email}
+              keyboardType='email-address'
+            />
+            <Text style={styles.txt}>Password</Text>
+            <TextInput
+              placeholder='********'
+              style={styles.textInput}
+              onChangeText={handlePassworChange}
+              value={password}
+              secureTextEntry={true}
+            />
+            <View style={{ alignItems: 'flex-start' }}>
+              <Text style={styles.forgoTxt} >Forgot password?</Text>
             </View>
-          </TouchableWithoutFeedback>
-        </KeyboardAvoidingView>
-      </View>
+            <View>
+              <TouchableOpacity
+                style={styles.btnContainer}
+                onPress={() => handleLogIn(email, password)}
+                // onPress={() => makeRequest()}
+
+              >
+                <Text style={styles.buttonText} >Login</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
+    </View>
   );
 
 }

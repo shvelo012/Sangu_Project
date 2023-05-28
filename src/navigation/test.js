@@ -1,156 +1,51 @@
-// import React from 'react';
-// import { Button, View, Text } from 'react-native';
-// import { NavigationContainer } from '@react-navigation/native';
-// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-// import { createStackNavigator } from '@react-navigation/stack';
+// // const fetch = require('node-fetch');
 
-// const Tab = createBottomTabNavigator();
-// const Stack = createStackNavigator();
+// const username = 's.shvelidze@sangu.edu.ge';
+// const password = 'shvelo15';
 
-// function HomeScreen({ navigation }) {
-//   return (
-//     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-//       <Text>Home Screen</Text>
-//       <Button
-//         title="Go to Details"
-//         onPress={() => navigation.navigate('Details')}
-//       />
-//     </View>
-//   );
-// }
+// const base64Credentials = Buffer.from(`${username}:${password}`).toString('base64');
+// const headers = {
+//   Authorization: `Basic ${base64Credentials}`,
+//   'Content-Type': 'application/json',
+// };
 
-// function DetailsScreen({ navigation }) {
-//   return (
-//     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-//       <Text>Details Screen</Text>
-//       <Button
-//         title="Go back to Home"
-//         onPress={() => navigation.goBack()}
-//       />
-//     </View>
-//   );
-// }
+// const requestBody = {
+//   email: 's.shvelidze@sangu.edu.ge',
+//   password: 'shvelo15',
+// };
 
-// function SettingsScreen() {
-//   return (
-//     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-//       <Text>Settings Screen</Text>
-//     </View>
-//   );
-// }
-
-// function ProfileScreen({ navigation }) {
-//   return (
-//     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-//       <Text>Profile Screen</Text>
-//       <Button
-//         title="Go back to Settings"
-//         onPress={() => navigation.goBack()}
-//       />
-//     </View>
-//   );
-// }
-
-// function HomeStack() {
-//   return (
-//     <Stack.Navigator>
-//       <Stack.Screen name="Home" component={HomeScreen} />
-//       <Stack.Screen name="Details" component={DetailsScreen} />
-//     </Stack.Navigator>
-//   );
-// }
-
-// function SettingsStack() {
-//   return (
-//     <Stack.Navigator>
-//       <Stack.Screen name="Settings" component={SettingsScreen} />
-//       <Stack.Screen name="Profile" component={ProfileScreen} />
-//     </Stack.Navigator>
-//   );
-// }
-
-// function App() {
-//   return (
-//     <NavigationContainer>
-//       <Tab.Navigator>
-//         <Tab.Screen name="Home" component={HomeStack} />
-//         <Tab.Screen name="Settings" component={SettingsStack} />
-//       </Tab.Navigator>
-//     </NavigationContainer>
-//   );
-// }
-
-// // export default App;
-
-// import React, {useContext, useState} from "react";
-// import {Button, StyleSheet, Text, TextInput, Touchable, TouchableOpacity, View, Image} from "react-native";
-// import { Linking} from 'react-native'
-// import {AuthContext} from "../../context/AuthContext";
-// const LoginScreen = ({navigtaion}) => {
-//     const [email,setEmail] = useState(null);
-//     const [password,setPassword] = useState(null);
-//     const val = useContext(AuthContext);
-//     return (
-//         <View style={styles.container}>
-//             <Image
-//                 style={styles.img}
-//                 source={require('/Users/nikolosdolidze/WebstormProjects/untitled/Sangu_Project/assets/Sangu.png')}
-//             />
-//             <View style={styles.wrapper}>
-//                 <Text>{val}</Text>
-//                 <TextInput style={styles.input} placeholder="ელ-ფოსტა " value={email} onChangeText={text => setEmail(text)}/>
-//                 <TextInput style={styles.input} placeholder="პაროლი" value={password} onChangeText={text => setPassword(text)} secureTextEntry/>
-
-//                 <Button title='შესვლა' color="#EA5455"/>
-
-//                 <View style={{flexDirection: 'row', marginTop: 20}}>
-//                     <Text>დaგავიწყდა პაროლი?</Text>
-//                     <TouchableOpacity onPress={handlePress}>
-//                         <Text style={styles.link}> პაროლის აღდგენა</Text>
-//                     </TouchableOpacity>
-//                 </View>
-
-//             </View>
-//         </View>
-//     )
-// }
-
-// const styles = StyleSheet.create(
-//     {
-//         container: {
-//             flex: 1,
-//             alignItems: 'center',
-//             justifyContent: 'center',
-//         },
-//         wrapper: {
-//             width: '80%'
-//         },
-//         input: {
-//             marginBottom: 12,
-//             borderWidth: 1,
-//             borderColor: '#bbb',
-//             borderRadius: 5,
-//             fontSize: 18,
-//             padding: 10,
-//             paddingHorizontal: 14,
-//         },
-//         link: {
-//             color: 'blue'
-//         },
-//         img: {
-//             width: 100,
-//             height: 100,
-//             textAlign:"center",
-//             marginBottom:48,
-
-//         },
-//         buttonHover:{
-
-// }
+// const makeRequest = async () => {
+//   try {
+//     const response = await fetch('https://ums.sangu.edu.ge/auth/login', {
+//       method: 'POST',
+//       headers: headers,
+//       body: JSON.stringify(requestBody),
 //     });
 
+//     // Extract and store the cookie value from the response headers
+//     const cookie = extractCookie(response.headers);
 
-// const handlePress = () => {
-//     Linking.openURL('https://ums.sangu.edu.ge/#!/reset');
+//     if (cookie) {
+//       console.log('Cookie:', cookie);
+//     }
+
+//     const data = await response.json();
+//     console.log('Response Data:', data);
+//   } catch (error) {
+//     console.error('Error:', error);
+//   }
 // };
-// export default LoginScreen;
+
+// // Function to extract the cookie value from the response headers
+// const extractCookie = (headers) => {
+//   const cookies = headers.raw()['set-cookie'];
+//   if (cookies && cookies.length > 0) {
+//     const cookie = cookies[0];
+//     const cookieValue = cookie.split(';')[0];
+//     return cookieValue;
+//   }
+//   return null;
+// };
+
+// // Call the function to make the request
+// makeRequest();
