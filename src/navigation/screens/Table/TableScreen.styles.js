@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import {colors} from '../../../colors/colors'
 
 export const styles = StyleSheet.create({
   mainContainer: {
@@ -13,7 +14,6 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   listContainer: {
-    justifyContent: 'space-between',
     borderRadius: 6,
     borderWidth: 1,
     margin: 6,
@@ -26,14 +26,26 @@ export const styles = StyleSheet.create({
     fontWeight:'bold',
   },
 
-  subjectTimeRoomView:{
-    flexDirection:"row",
-    justifyContent:"space-around"
+  subjectTimeRoomView: {
+    flexDirection: "row",
+    justifyContent: 'space-around',
+    width:'100%',
   },
-  subjectTimeRoom:{
+  subjectTimeRoom: {
     marginTop: 20,
-    fontSize:14,
-    color:'#E74646',
-    fontWeight:'bold'
+    marginBottom: 20,
+    color: colors.red,
+    fontWeight: "bold",
+    textAlign:"center",
+    flex:1,
+    borderBottomWidth:0.5,
   },
+  tableContainer:{
+    width:'95%',
+    borderRadius:5,
+    borderWidth:1,
+    justifyContent:'center',
+    alignSelf:'center',
+    backgroundColor:colors.white,
+  }
 });

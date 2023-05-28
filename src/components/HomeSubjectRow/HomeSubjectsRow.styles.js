@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { colors } from '../../colors/colors';
 
 export const styles = StyleSheet.create({
   container: {
@@ -9,20 +10,22 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
   textSubject: {
+
     fontWeight: 'bold',
     color: 'black',
     width: '35%',
-    textAlign:'center'
+    textAlign:'center',
+    justifyContent:'center',
   },
-  textInfo: {
-    width:'35%',
-    fontWeight: 'bold',
-    color: 'black',
+  iconStyle: {
+    height:25,
+    width:25,
   },
   textScore: {
-    width:'35%',
-    color: 'red',
+    width:'30%',
+    color: colors.red,
     textAlign: 'center',
+    fontWeight:'bold',
   },
 
 
