@@ -1,0 +1,100 @@
+{
+  "_id":"01011085267",
+  "personalNo":"01011085267",
+  "firstName":"საბა",
+  "lastName":"შველიძე",
+  "phone":"592084045",
+  "signature":{
+     
+  },
+  "roles":[
+     "student"
+  ],
+  "emailVerified":true,
+  "__v":0,
+  "documentNo":"18IA10395",
+  "legalAddress":"ქ. თბილისი, ვაზისუბანი, მე-2 მიკრო რაიონი, მე - 2 კორპუსი, ბინა #96",
+  "physicalAddress":"ქ. თბილისი, ვაზისუბანი, მე-2 მიკრო რაიონი, მე - 2 კორპუსი, ბინა #96",
+  "nationality":"ქართველი",
+  "citizenship":"georgian",
+  "gender":"male",
+  "birthPlace":"თბილისი",
+  "birthDate":null,
+  "email":"s.shvelidze@sangu.edu.ge",
+  "photo":"https://ums-files.ams3.digitaloceanspaces.com/profile-images/08-09-2020/1599562108679-%E1%83%A1%E1%83%90%E1%83%91%E1%83%90%20%E1%83%A8%E1%83%95%E1%83%94%E1%83%9A%E1%83%98%E1%83%AB%E1%83%94.jpg",
+  "userConfig":{
+     "verifiedPhone":true,
+     "theme":"light",
+     "informed":true
+  },
+  "lastLogin":"2023-05-29T07:36:00.111Z",
+  "rights":[
+     
+  ],
+  "profiles":[
+     {
+        "_id":"5f5134e4a7d00a2c6f336493",
+        "type":"student",
+        "user":"01011085267",
+        "info":{
+           "semester":6,
+           "programCode":"14501034",
+           "programName":"კომპიუტერული მეცნიერება",
+           "importData":{
+              "არჩევანი":2,
+              "გრანტი %":50,
+              "საკონკ ქულა":1986.8,
+              "არჩევითი სკალ":157.4,
+              "არჩევითი ნედლი ქულა":29,
+              "არჩევითი საგანი 1":"მათემატიკა",
+              "უცხო ენა სკალ":170,
+              "ნედლი ქულა":74,
+              "უცხო ენა":"ინგლისური ენა",
+              "ქართული ენა სკალ":169.3,
+              "ქართული ენა":57,
+              "სახელი":"საბა",
+              "გვარი":"შველიძე",
+              "საგამოცდო":"003808044",
+              "პ/ნ":"01011085267",
+              "პროგრამა":"კომპიუტერული მეცნიერება",
+              "პროგრამის კოდი":"14501034",
+              "უსდ":"ა(ა)იპ  საქართველოს საპატრიარქოს წმიდა ანდრია პირველწოდებულის სახელობის ქართული უნივერსიტეტი",
+              "უსდ კოდი":"145"
+           },
+           "choiceNumber":2,
+           "grant":50,
+           "level":"level01",
+           "gpa":3.38,
+           "average":82.35,
+           "lastSemesterAverage":81.8,
+           "achievement":"არა",
+           "certificate":{
+              "date":null,
+              "series":"AA",
+              "number":"0084566"
+           },
+           "graduationYear":"2020",
+           "school":"სსიპ- ქალაქ თბილისის #49 საჯარო სკოლა",
+           "workPosition":"არა",
+           "workPlace":"არა",
+           "socialStatus":null,
+           "militaryState":"conscript",
+           "infoSource":"adv",
+           "faculty":"faculty05",
+           "uniman":{
+              "dept":-340,
+              "id":6890
+           },
+           "currentSelectedCredits":186,
+           "questionnaireLastOpenDate":"2023-03-31T09:48:32.349Z",
+           "scheduleSelected":"2022-spring",
+           "scheduleSelectRequired":false
+        },
+        "state":"active",
+        "__v":0,
+        "program":"5d6e1cc4ac842f358a1a130c",
+        "maxInactiveSessionTime":1800000
+     }
+  ],
+  "employee":null
+}
