@@ -5,14 +5,6 @@ import { styles } from "./TableScreen.styles";
 
 import jsonData from "./TableData.json";
 
-
-// const table = jsonData.map(row => ({
-//   subject: row.sessionGroup.subjectActivation?.subject?.name || 'N/A',
-//   time: row.startTime,
-//   room: row.room?.name || 'N/A',
-//   building: row.room?.building || 'N/A',
-// }));
-
 const table = jsonData;
 let tableData = [];
 for (i = 0; i < table.length; i++) {
@@ -24,7 +16,7 @@ for (i = 0; i < table.length; i++) {
     day: table[i].dayOfWeek,
   });
 }
-// console.log(tableData);
+// console.log(new Date(tableData[0].startTime).getFullYear());
 const getStartTime = (time) => {
   const date = new Date(time);
   const hours = date.getHours();
