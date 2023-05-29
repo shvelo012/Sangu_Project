@@ -16,7 +16,6 @@ for (i = 0; i < table.length; i++) {
     day: table[i].dayOfWeek,
   });
 }
-// console.log(new Date(tableData[0].startTime).getFullYear());
 const getStartTime = (time) => {
   const date = new Date(time);
   const hours = date.getHours();
