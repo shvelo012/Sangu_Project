@@ -32,5 +32,7 @@ export const styles = StyleSheet.create({
   },
   lastElement:{
     marginBottom:0,
+    borderBottomWidth:0,
+
   }
 });
