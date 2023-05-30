@@ -102,7 +102,6 @@ export const styles = StyleSheet.create({
     flexWrap:"wrap",
     marginTop: 10,
   },
-
   modalScore: {
     color: "red",
     fontWeight: "bold",

@@ -25,16 +25,19 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     alignItems: 'center',
     marginBottom: 20,
-    padding: 20,
+    paddingVertical:30,
+    // backgroundColor:'red'
   },
   leftChild: {
-    width: '40%',
+    width:'40%',
+    paddingLeft:20,
   },
   rightChildContainer: {
     flex: 1,
     alignItems: 'flex-end',
   },
   rightChild: {
+    paddingRight:20,
     flex: 1,
   },
 });
