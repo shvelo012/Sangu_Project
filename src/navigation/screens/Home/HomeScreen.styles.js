@@ -2,31 +2,27 @@ import { StyleSheet } from 'react-native';
 import { colors } from '../../../colors/colors';
 
 export const styles = StyleSheet.create({
-  mainContainer: {
+  wholeContainer: {
     flex: 1,
+    backgroundColor: colors.white,
+  },
+  mainContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 30,
   },
   header: {
     color: 'black',
     fontSize: 26,
     fontWeight: 'bold',
-  },
-  listContainer: {
-    margin: 10,
-    justifyContent: 'space-between',
-    borderRadius: 6,
-    borderWidth: 1,
-    backgroundColor: colors.white,
+    marginTop: 30,
   },
   subjectInfoResultView: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
     alignItems: 'center',
-    textAlign:'center',
+    justifyContent: 'space-around',
     borderBottomWidth: 0.5,
-    height: '10%',
+    paddingHorizontal: 20,
+    paddingVertical: 20,
   },
   subjectInfoResult: {
     fontSize: 14,

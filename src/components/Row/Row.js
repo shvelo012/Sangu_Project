@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.5,
     textAlign: 'center',
     alignItems: 'center',
-    marginBottom: 50,
+    marginBottom: 20,
     padding: 20,
   },
   leftChild: {

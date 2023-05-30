@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, TouchableOpacity, Modal, View, Image } from "react-native";
+import { Text, TouchableOpacity, Modal, View, Image, ScrollView } from "react-native";
 import { styles } from "./HomeSubjectsRow.styles";
 
 
@@ -28,9 +28,9 @@ const HomeSubjectsRow = ({ subject, info, total, ScoreDetails }) => {
     <>
       <TouchableOpacity style={styles.container} onPress={openModal}>
         <Text style={styles.textSubject}>{subject}</Text>
-        <TouchableOpacity onPress={openModal2}><Image style={styles.iconStyle} source={info[0]} /></TouchableOpacity>
-        <TouchableOpacity><Image style={styles.iconStyle} source={info[1]} /></TouchableOpacity>
-        <TouchableOpacity><Image style={styles.iconStyle} source={info[2]} /></TouchableOpacity>
+        <TouchableOpacity onPress={openModal2} ><Image style={styles.iconStyle} source={info[0]} /></TouchableOpacity>
+        <TouchableOpacity onPress={openModal2} ><Image style={styles.iconStyle} source={info[1]} /></TouchableOpacity>
+        <TouchableOpacity onPress={openModal2} ><Image style={styles.iconStyle} source={info[2]} /></TouchableOpacity>
         <Text style={styles.textScore}>{total}</Text>
       </TouchableOpacity>
 
@@ -64,6 +64,7 @@ const HomeSubjectsRow = ({ subject, info, total, ScoreDetails }) => {
               </View>
             </TouchableOpacity>
           </View>
+        <ScrollView style={styles.HomeScrollStyle}>
           <View style={styles.scoreContainer}>
             {ScoreDetails.map((item, index) => (
               <View key={index} style={styles.modalElements}>
@@ -77,7 +78,9 @@ const HomeSubjectsRow = ({ subject, info, total, ScoreDetails }) => {
               </View>
             ))}
           </View>
+      </ScrollView>
         </View>
+
       </Modal>
     </>
   );

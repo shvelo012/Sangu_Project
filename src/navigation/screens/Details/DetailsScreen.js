@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, Text, Button, Linking, Image, TouchableOpacity } from "react-native";
+import { View, Text, Button, Linking, Image, TouchableOpacity, ScrollView } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
@@ -32,6 +32,7 @@ export default function Details({ navigation }) {
 
 
   return (
+    <ScrollView>
     <View style={styles.container}>
       <TouchableOpacity style={[styles.containerItems, styles.profile]} onPress={() => navigation.navigate("Profile")}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -70,12 +71,12 @@ export default function Details({ navigation }) {
         </View>
       </TouchableOpacity>
       <TouchableOpacity style={[styles.containerItems, styles.exit]} onPress={handleLogOut}>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', }}>
           <Image style={styles.images} source={require('./img/logout.png')} />
           <Text style={styles.text}>გამოსვლა</Text>
         </View>
       </TouchableOpacity>
     </View>
-
+    </ScrollView>
   );
 }

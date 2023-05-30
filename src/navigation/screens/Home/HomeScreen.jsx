@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, ScrollView } from "react-native";
 import HomeSubjectRow from '../../../components/HomeSubjectRow/HomeSubjectsRow';
 import jsonData from './data.json';
 import { styles } from './HomeScreen.styles';
@@ -17,6 +17,8 @@ export default function Home({ navigation }) {
 
   return (
     <>
+      <ScrollView>
+      <View style={styles.wholeContainer}>
       <View style={styles.mainContainer}>
         <Text style={styles.header}>მიმდინარე სემესტრი</Text>
       </View>
@@ -40,6 +42,9 @@ export default function Home({ navigation }) {
           </React.Fragment>
         ))}
       </View>
+      </View>
+      </ScrollView>
     </>
   );
+
 }

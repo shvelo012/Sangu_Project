@@ -26,6 +26,8 @@ export const styles = StyleSheet.create({
   },
   exit: {
     borderTopWidth: 0.5,
+    paddingBottom:0,
+    marginBottom:20,
   },
   images: {
     marginLeft:20,
