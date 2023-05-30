@@ -33,12 +33,14 @@ function getDayOfWeek(day) {
 export default function Table({ navigation }) {
   return (
     <>
-      <View style={styles.mainContainer}>
-        <Text
-          // onPress={() => navigation.navigate('Home')}
-          style={styles.header}>ცხრილი</Text>
-      </View>
+
       <ScrollView style={styles.scrollContainer}>
+<View style={styles.wholeContainer}>
+        <View style={styles.mainContainer}>
+          <Text
+            // onPress={() => navigation.navigate('Home')}
+            style={styles.header}>ცხრილი</Text>
+        </View>
 
         <View style={styles.tableContainer}>
           {tableData.map((item, index) => (
@@ -66,6 +68,7 @@ export default function Table({ navigation }) {
 
           ))}
         </View>
+</View>
       </ScrollView>
     </>
   );

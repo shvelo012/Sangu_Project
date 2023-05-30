@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     borderRadius: 6,
     borderWidth: 1,
     margin: 6,
-    backgroundColor: 'black',
+    // backgroundColor: 'black',
   },
   dayOfWeek:{
     fontSize:18,
@@ -41,11 +41,14 @@ export const styles = StyleSheet.create({
     borderBottomWidth:0.5,
   },
   tableContainer:{
-    width:'95%',
+    width:'100%',
     borderRadius:5,
-    borderWidth:1,
+    // borderWidth:1,
     justifyContent:'center',
     alignSelf:'center',
+
+  },
+  wholeContainer:{
     backgroundColor:colors.white,
   }
 });
