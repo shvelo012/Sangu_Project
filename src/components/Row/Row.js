@@ -9,8 +9,10 @@ const Row = ({ children, style }) => {
 
   return (
     <View style={[styles.row, style]}>
-      <View style={[styles.leftChild, style.leftChild]}>{children[0]}</View>
-      <View style={[styles.rightChild, style.rightChild]}>{children[1]}</View>
+      <View style={styles.leftChild}>{children[0]}</View>
+      <View style={styles.rightChildContainer}>
+        <View style={styles.rightChild}>{children[1]}</View>
+      </View>
     </View>
   );
 };
@@ -18,15 +20,22 @@ const Row = ({ children, style }) => {
 const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-between',
+    borderBottomWidth: 0.5,
+    textAlign: 'center',
+    alignItems: 'center',
+    marginBottom: 50,
+    padding: 20,
   },
   leftChild: {
+    width: '40%',
+  },
+  rightChildContainer: {
     flex: 1,
+    alignItems: 'flex-end',
   },
   rightChild: {
     flex: 1,
-    alignItems: 'flex-end',
   },
 });
 

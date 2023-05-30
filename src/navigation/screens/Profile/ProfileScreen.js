@@ -1,64 +1,57 @@
 import * as React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 
-import PersonalInfo from "./passport.json";
+import PersonalInfo from './passport.json';
 import Row from '../../../components/Row/Row';
-import { styles } from "./ProfileScreen.style";
+import { styles } from './ProfileScreen.style';
 
 const info = PersonalInfo;
 const infoData = {
-  fullName: info.firstName + " " + info.lastName,
+  fullName: info.firstName + ' ' + info.lastName,
   status: info.profiles[0].state,
   sex: info.gender,
   Nationality: info.nationality,
   IDnum: info.personalNo,
   TelNum: info.phone,
   Email: info.email,
-  Faculty: info.profiles[0].info.programName
+  Faculty: info.profiles[0].info.programName,
 };
-console.log(infoData);
-
-
-
-
 
 export default function Profile({ navigation }) {
-  return (
-    // <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    //   <Text
-    //     onPress={() => navigation.navigate('Home')}
-    //     style={{ fontSize: 26, fontWeight: 'bold' }}>Profile Screen</Text>
+  let statusColor = infoData.status === 'active' ? 'green' : 'red';
 
-    // </View>
-    <View style={styles.container}>
-      <View style={styles.topContent}>
-        <Text>{infoData.fullName}</Text>
-        <Text>{infoData.status}</Text>
+  return (
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <View style={styles.container}>
+        <View style={styles.topContent}>
+          <Text style={styles.nameStyle}>{infoData.fullName}</Text>
+          <Text style={[styles.statusStyle, { color: statusColor }]}>{infoData.status}</Text>
+        </View>
+        <Row>
+          <Text style={styles.infoContentStyle}>სქესი</Text>
+          <Text style={styles.infoContentStyle}>{infoData.sex}</Text>
+        </Row>
+        <Row>
+          <Text style={styles.infoContentStyle}>ეროვნება</Text>
+          <Text style={styles.infoContentStyle}>{infoData.Nationality}</Text>
+        </Row>
+        <Row>
+          <Text style={styles.infoContentStyle}>პირადი ნომერი</Text>
+          <Text style={styles.infoContentStyle}>{infoData.IDnum}</Text>
+        </Row>
+        <Row>
+          <Text style={styles.infoContentStyle}>ტელ. ნომერი</Text>
+          <Text style={styles.infoContentStyle}>{infoData.TelNum}</Text>
+        </Row>
+        <Row>
+          <Text style={styles.infoContentStyle}>ელ-ფოსტა</Text>
+          <Text style={styles.infoContentStyle}>{infoData.Email}</Text>
+        </Row>
+        <Row style={styles.lastElement}>
+          <Text style={[styles.infoContentStyle,styles.lastContentStyle]}>ფაკულტეტი</Text>
+          <Text style={[styles.infoContentStyle,styles.lastContentStyle]}>{infoData.Faculty}</Text>
+        </Row>
       </View>
-      <Row style={styles.gender}>
-        <Text>სქესი ---- </Text>
-        <Text>{infoData.sex}</Text>
-      </Row>
-      <Row style={styles.nation}>
-        <Text>ეროვნება ---</Text>
-        <Text>{infoData.Nationality}</Text>
-      </Row>
-      <Row style={styles.personalNumber}>
-        <Text>პირადი ნომერი ----</Text>
-        <Text>{infoData.IDnum}</Text>
-      </Row>
-      <Row style={styles.phoneNumber}>
-        <Text>ტელ. ნომერი ---</Text>
-        <Text>{infoData.TelNum}</Text>
-      </Row>
-      <Row style={styles.emailAdress}>
-        <Text>ელ-ფოსტა ----</Text>
-        <Text>{infoData.Email}</Text>
-      </Row>
-      <Row style={styles.facultyStyle}>
-        <Text>ფაკულტეტი ----</Text>
-        <Text>{infoData.Faculty}</Text>
-      </Row>
-    </View>
+    </ScrollView>
   );
 }

@@ -2,30 +2,35 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   //NIka mixedavs <3
-  container:{
-  margin:20,
+  container: {
+    marginBottom:0,
+    // backgroundColor:'red'
   },
-  topContent:{
-  justifyContent:"space-between",
-    alignSelf:"center"
+  topContent: {
+    marginTop:20,
+    // backgroundColor:'red',
+    marginBottom:28,
+    alignSelf: "center",
   },
-  gender:{
-  justifyContent:"space-between",
-    backgroundColor:'red',
+  nameStyle: {
+    fontSize: 24,
+    color:'black',
+    fontWeight:'bold',
   },
-  nation:{
-
+  statusStyle: {
+    marginTop: 10,
+    justifyContent: "center",
+    alignSelf: "center",
+    fontWeight: "bold",
   },
-  personalNumber:{
-
+  infoContentStyle:{
+    fontSize:16,
+    fontWeight:"bold",
+    color:'black',
   },
-  phoneNumber:{
-
+  lastContentStyle:{
   },
-  emailAdress:{
-
-  },
-  facultyStyle:{
-
+  lastElement:{
+    marginBottom:0,
   }
-})
+});
