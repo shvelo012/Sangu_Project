@@ -1,98 +1,111 @@
 import { StyleSheet } from "react-native";
+import { colors } from '../../colors/colors';
 
 export const styles = StyleSheet.create({
   container: {
+    flex:1,
     flexDirection: 'row',
-    justifyContent: 'space-around',
     borderBottomWidth: 0.5,
-    alignContent: 'center',
     alignItems: 'center',
-    padding: 10,
-    height: 15 + '%',
+    justifyContent: 'space-around',
+    // backgroundColor:'red',
   },
-
   textSubject: {
+    paddingVertical:52,
+    flex: 1,
     fontWeight: 'bold',
-    width: 40 + '%',
     color: 'black',
-
+    textAlign: 'center',
+    justifyContent: 'center',
+    // backgroundColor: 'red',
   },
-  textInfo: {
-    fontWeight: 'bold',
-    color: 'black',
+  iconStyle: {
+    height: 25,
+    width: 25,
+    marginLeft: 10,
   },
   textScore: {
-    color: 'red',
+    flex: 1,
+    color: colors.red,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    // backgroundColor:'red'
   },
+
 
   // modal Styles -------------
 
   modalContainer: {
     borderWidth: 1,
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.6)',
-
-    // flexDirection: 'column',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.6)",
   },
   headerContainer: {
     justifyContent: "space-between",
-    alignItems:"center",
-    flexDirection: 'row',
-    // borderWidth: 1,
-    width: 85 + '%',
-    height: 7 + '%',
-    // fontSize: 12,
+    alignItems: "center",
+    flexDirection: "row",
+    width: 85 + "%",
+    fontSize: 12,
+    marginTop:20,
   },
   modalHeader: {
-    color: 'white',
+    color: "white",
     fontSize: 22,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
 
   closeButton: {
     // borderWidth:1,
+    alignSelf:"center",
     width: 25,
     height: 25,
   },
   modalElements: {
     // alignContent: 'flex-start',
     // alignItems: 'flex-start',
+    // backgroundColor:'green',
     margin: 13,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     // justifyContent: 'space-between',
     // alignItems: 'center',
   },
-  scoreContainer: {
-    flex: 1,
-    borderWidth: 1,
-    width: 90 + '%',
-    marginTop: 15,
-    margin: 20,
-    padding: 5,
-    justifyContent:"center",
-    alignSelf:"center",
-    backgroundColor: 'white',
+  HomeScrollStyle:{
+    width:'95%',
     borderRadius:10,
-  },
-  modalName: {
-    width:200,
-    color: 'black',
-    fontWeight:"bold",
-    fontSize:15,
-    // margin: 'auto',
-    // flex: 0.5,
-    // alignContent: 'flex-start',
-    // alignItems: 'flex-start',
-    // justifyContent: 'flex-start',
+    marginBottom:20,
+    marginTop:10,
   },
 
+  scoreContainer: {
+    width:'95%',
+    marginTop: 20,
+    margin: 20,
+    paddingTop:5,
+    paddingBottom:5,
+    backgroundColor: "white",
+    borderRadius: 10,
+    justifyContent:"center",
+    alignSelf:"center",
+
+  },
+  modalName: {
+    width:150,
+    // backgroundColor:'red',
+    color: "black",
+    fontWeight: "bold",
+    fontSize: 15,
+    justifyContent:"center",
+    alignSelf:"center",
+    flexWrap:"wrap",
+    marginTop: 10,
+  },
   modalScore: {
-    color: 'red',
-    fontWeight:'bold',
-    fontSize:15,
-    // marginLeft: 1,
+    color: "red",
+    fontWeight: "bold",
+    fontSize: 15,
+    marginTop: 10,
   },
 });

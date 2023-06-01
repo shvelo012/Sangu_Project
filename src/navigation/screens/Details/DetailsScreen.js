@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { View, Text, Button, Linking } from 'react-native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useNavigation } from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import * as React from "react";
+import { View, Text, Button, Linking, Image, TouchableOpacity, ScrollView } from "react-native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { styles } from "./DetailsScreen.styles";
 
 
 const handlePress = () => {
@@ -17,45 +17,66 @@ export default function Details({ navigation }) {
     await clearAsyncStorage();
     navigation.reset({
       index: 0,
-      routes: [{ name: 'Auth' }],
+      routes: [{ name: "Auth" }],
     });
   };
 
   async function clearAsyncStorage() {
     try {
       await AsyncStorage.clear();
-      console.log('AsyncStorage successfully cleared!');
+      console.log("AsyncStorage successfully cleared!");
     } catch (error) {
-      console.error('Error clearing AsyncStorage: ', error);
+      console.error("Error clearing AsyncStorage: ", error);
     }
   }
 
 
-
-
   return (
-    <View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start' }}>
-      <Text
-        onPress={() => navigation.navigate('Profile')}
-        style={{ color: 'black', fontSize: 26, fontWeight: 'bold' }}>პროფილი</Text>
-      <Text
-        onPress={() => navigation.navigate('StudentCard')}
-        style={{ color: 'black', fontSize: 26, fontWeight: 'bold' }}>სასწავლო ბარათი</Text>
-      <Text
-        onPress={() => navigation.navigate('Finances')}
-        style={{ color: 'black', fontSize: 26, fontWeight: 'bold' }}>ფინანსები</Text>
-      <Text
-        onPress={() => navigation.navigate('Exams')}
-        style={{ color: 'black', fontSize: 26, fontWeight: 'bold' }}>გამოცდები</Text>
-      <Text
-        onPress={() => navigation.navigate('Documents')}
-        style={{ color: 'black', fontSize: 26, fontWeight: 'bold' }}>დოკუმენტები</Text>
-      <Text
-        onPress={handlePress}
-        style={{ color: 'black', fontSize: 26, fontWeight: 'bold' }}>გზამკვლევი</Text>
-      <Text
-        onPress={handleLogOut}
-        style={{ color: 'black', fontSize: 26, fontWeight: 'bold' }}>გამოსვლა</Text>
+    <ScrollView>
+    <View style={styles.container}>
+      <TouchableOpacity style={[styles.containerItems, styles.profile]} onPress={() => navigation.navigate("Profile")}>
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <Image style={styles.images} source={require('./img/user.png')} />
+          <Text style={styles.text}>პროფილი</Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.containerItems} onPress={() => navigation.navigate("StudentCard")}>
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <Image style={styles.images} source={require('./img/test.png')} />
+          <Text style={styles.text}>სასწავლო ბარათი</Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.containerItems} onPress={() => navigation.navigate("Finances")}>
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <Image style={styles.images} source={require('./img/cash.png')} />
+          <Text style={styles.text}>ფინანსები</Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.containerItems} onPress={() => navigation.navigate("Exams")}>
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <Image style={styles.images} source={require('./img/exam.png')} />
+          <Text style={styles.text}>გამოცდები</Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.containerItems} onPress={() => navigation.navigate("Documents")}>
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <Image style={styles.images} source={require('./img/paper.png')} />
+          <Text style={styles.text}>დოკუმენტები</Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.containerItems} onPress={handlePress}>
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <Image style={styles.images} source={require('./img/external-link.png')} />
+          <Text style={styles.text}>გზამკვლევი</Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity style={[styles.containerItems, styles.exit]} onPress={handleLogOut}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', }}>
+          <Image style={styles.images} source={require('./img/logout.png')} />
+          <Text style={styles.text}>გამოსვლა</Text>
+        </View>
+      </TouchableOpacity>
     </View>
+    </ScrollView>
   );
 }

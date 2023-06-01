@@ -1,17 +1,18 @@
 import * as React from 'react';
 import { useState } from 'react';
 import {
-  View, Text, TextInput, 
-  KeyboardAvoidingView, 
-  StyleSheet, 
+  View, Text, TextInput,
+  KeyboardAvoidingView,
   TouchableWithoutFeedback,
-  Keyboard, 
+  Keyboard,
+
   TouchableOpacity
 
 } from 'react-native';
 // import { StyleSheet } from 'react-native';
 import { useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { styles } from './Auth.Styles'
 
 
 export default function Auth({ navigation }) {
@@ -82,100 +83,100 @@ export default function Auth({ navigation }) {
     }
   };
 
+  //   //-------------
+
+  //   const username = 's.shvelidze@sangu.edu.ge';
+  //   const password1 = 'shvelo15';
+
+  //   const base64Credentials = Buffer.from(`${username}:${password1}`).toString('base64');
+  //   const headers = {
+  //     Authorization: `Basic ${base64Credentials}`,
+  //     'Content-Type': 'application/json',
+  //   };
+  // // ----------------
+  //   const requestBody = {
+  //     email: 's.shvelidze@sangu.edu.ge',
+  //     password: 'shvelo15',
+  //   };
+
+  //   const makeRequest = async () => {
+  //     try {
+  //       const response = await fetch('https://ums.sangu.edu.ge/auth/login', {
+  //         method: 'POST',
+  //         headers: headers,
+  //         body: JSON.stringify(requestBody),
+  //       });
+
+  //       // Extract and store the cookie value from the response headers
+  //       const cookie = extractCookie(response.headers);
+
+  //       if (cookie) {
+  //         console.log('Cookie:', cookie);
+  //       }
+
+  //       const data = await response.json();
+  //       console.log('Response Data:', data);
+  //     } catch (error) {
+  //       console.error('Error:', error);
+  //     }
+  //   };
+
+  //   // Function to extract the cookie value from the response headers
+  //   const extractCookie = (headers) => {
+  //     const cookies = headers.raw()['set-cookie'];
+  //     if (cookies && cookies.length > 0) {
+  //       const cookie = cookies[0];
+  //       const cookieValue = cookie.split(';')[0];
+  //       return cookieValue;
+  //     }
+  //     return null;
+  //   };
+
+  //   // Call the function to make the request
+  //   makeRequest();
+
+  //-------------------
+
+
   return (
-      <View style={{ flex: 1, justifyContent: 'center', backgroundColor: 'white' }}>
-        <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-          style={styles.container}>
-          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <View style={styles.inner}>
-              <Text style={styles.header}>Login</Text>
-              <Text style={styles.txt} >Email</Text>
-              <TextInput
-                placeholder='Example@sangu.edu.ge'
-                style={styles.textInput}
-                onChangeText={handleEmailChange}
-                value={email}
-                keyboardType='email-address'
-              />
-              <Text style={styles.txt}>Password</Text>
-              <TextInput
-                placeholder='********'
-                style={styles.textInput}
-                onChangeText={handlePassworChange}
-                value={password}
-                secureTextEntry={true}
-              />
-              <View style={{ alignItems: 'flex-start' }}>
-                <Text style={styles.forgoTxt} >Forgot password?</Text>
-              </View>
-              <View>
-                <TouchableOpacity style={styles.btnContainer} onPress={() => handleLogIn(email, password)}>
-                  <Text style={styles.buttonText} >Login</Text>
-                </TouchableOpacity>
-              </View>
+    <View style={{ flex: 1, justifyContent: 'center', backgroundColor: 'white' }}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={styles.container}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View style={styles.inner}>
+            <Text style={styles.header}>Login</Text>
+            <Text style={styles.txt} >Email</Text>
+            <TextInput
+              placeholder='Example@sangu.edu.ge'
+              style={styles.textInput}
+              onChangeText={handleEmailChange}
+              value={email}
+              keyboardType='email-address'
+            />
+            <Text style={styles.txt}>Password</Text>
+            <TextInput
+              placeholder='********'
+              style={styles.textInput}
+              onChangeText={handlePassworChange}
+              value={password}
+              secureTextEntry={true}
+            />
+            <View style={{ alignItems: 'flex-start' }}>
+              <Text style={styles.forgoTxt} >Forgot password?</Text>
             </View>
-          </TouchableWithoutFeedback>
-        </KeyboardAvoidingView>
-      </View>
+            <View>
+              {/* disabled={!password || !email } */}
+              <TouchableOpacity style={styles.btnContainer} onPress={() => handleLogIn(email, password)}>
+                <Text style={styles.buttonText} >Login</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
+    </View>
   );
 
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  inner: {
-    padding: 24,
-    flex: 1,
-  },
-  header: {
-    fontFamily: 'Helvetica',
-    fontStyle: 'normal',
-    fontSize: 24,
-    color: '#111111',
-    textAlign: 'center',
-    fontSize: 36,
-    marginBottom: 48,
-  },
-  textInput: {
-    backgroundColor: 'rgba(249, 249, 249, 0.8)',
-    padding: 8,
-    borderWidth: 1,
-    borderColor: '#EEEEEE',
-    borderRadius: 4,
-    transform: [{ rotate: '0.3deg' }],
-    height: 32,
-    marginBottom: 36,
-    marginTop: 10,
 
-  },
-  btnContainer: {
-    alignItems: 'center',
-    backgroundColor: "#e22e44",
-    height: 40,
-    padding: 8,
-    borderRadius: 8,
-    marginTop: 12,
-  },
-
-  txt: {
-    marginStart: 4,
-    color: '#111111',
-
-  },
-  forgoTxt: {
-    marginStart: 4,
-    textAlign: 'left',
-    color: "#e22e44",
-  },
-  buttonText: {
-    color: '#FFFFFF',
-    width: 44,
-    height: 18,
-    fontFamily: 'Helvetica',
-    fontSize: 16,
-    lineHeight: 18,
-  }
-});
