@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import {
   View, Text, TextInput,
   KeyboardAvoidingView,
@@ -13,36 +13,143 @@ import {
 import { useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { styles } from './Auth.Styles'
+import { AuthContext } from '../../../Context/AuthContext';
 
+// export const testNavigation = (navigation) => {
+//   navigation.reset({
+//     index: 0,
+//     routes: [{ name: 'Dashboard' }],
+//   });
+// };
 
 export default function Auth({ navigation }) {
+  const { login1 } = useContext(AuthContext);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isValid, setIsValid] = useState(true);
   const [data, setData] = useState('');
   const [dataCheck, setDataCheck] = useState(null);
 
-  const fetchData = async () => {
+  // const getData = async () => {
+  //   try {
+  //     const response = await fetch('https://ums.sangu.edu.ge/auth/login', {
+  //       method: 'post',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({ email, password }),
+  //     });
+
+  //     if (response.ok) {
+  //       const data = await response.json();
+  //       console.log('Login successful', data);
+  //       // Extract session ID from response headers
+  //       const cookies = response.headers.get('Set-Cookie');
+  //       // setCookie(cookies);
+  //       console.log('cookies: ', cookies)
+  //       // Perform further actions after successful login
+  //     } else {
+  //       console.error('Login failed');
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+  //   const getData = async () => {
+  //   try {
+  //     const response = await fetch('https://ums.sangu.edu.ge/auth/login', {
+  //       method: 'post',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({ email, password }),
+  //       credentials: 'include', // Include credentials (cookies) in the request
+  //     });
+
+  //     if (response.ok) {
+  //       const data = await response.json();
+  //       console.log('Login successful', data);
+
+  //       // Extract cookies from the response headers
+  //       const cookies = response.headers.get('Set-Cookie');
+  //       console.log('cookies:', cookies);
+
+  //       // Perform further actions after successful login
+  //     } else {
+  //       console.error('Login failed');
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+  const login = async () => {
     try {
-      const result = await AsyncStorage.getItem(email);
-      console.log('Data fetched from AsyncStorage:', result);
-      return result;
+      const response = await fetch('https://ums.sangu.edu.ge/auth/login', {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+        credentials: 'include', // Include credentials (cookies) in the request
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Login successful', data);
+        console.log(response.headers);
+        // Extract cookies from the response headers
+        const cookies = response.headers.get('Set-Cookie');
+        console.log('cookies:', cookies);
+        const Origin = response.headers.get('Origin');
+        console.log('Origin:', Origin);
+
+        // Perform further actions after successful login
+      } else {
+        console.error('Login failed');
+      }
     } catch (error) {
-      console.log('Error fetching data from AsyncStorage:', error);
+      console.error(error);
     }
   };
 
-  useEffect(() => {
-    fetchData().then((result) => {
-      setDataCheck(result);
-    });
-  }, []);
+
+
+
+  // const fetchData = async () => {
+  //   try {
+  //     const result = await AsyncStorage.getItem(email);
+  //     console.log('Data fetched from AsyncStorage:', result);
+  //     return result;
+  //   } catch (error) {
+  //     console.log('Error fetching data from AsyncStorage:', error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchData().then((result) => {
+  //     setDataCheck(result);
+  //   });
+  // }, []);
 
 
   const handleLogIn = async (email, password) => {
-    await saveString('email', email);
-    await saveString('password', password);
-    await checkAsyncStorage()
+    // await saveString('email', email);
+    // await saveString('password', password);
+    // await checkAsyncStorage()
+    // navigation.reset({
+    //   index: 0,
+    //   routes: [{ name: 'Dashboard' }],
+    // });
+    setEmail(email);
+    setPassword(password);
+    await login(email, password);
+    login1();
+
+  };
+
+  const testNavigation = () => {
     navigation.reset({
       index: 0,
       routes: [{ name: 'Dashboard' }],
@@ -55,22 +162,23 @@ export default function Auth({ navigation }) {
   };
 
   const handleEmailChange = email => {
-    setEmail(email);
     setIsValid(validateEmail(email));
+    setEmail(email);
+
   };
 
   const handlePassworChange = password => {
     setPassword(password);
   };
 
-  const saveString = async (key, value) => {
-    try {
-      await AsyncStorage.setItem(key.toString(), value.toString());
-      console.log(`Saved ${value} to ${key}`);
-    } catch (error) {
-      console.log(`Error saving ${value} to ${key}`);
-    }
-  };
+  // const saveString = async (key, value) => {
+  //   try {
+  //     await AsyncStorage.setItem(key.toString(), value.toString());
+  //     console.log(`Saved ${value} to ${key}`);
+  //   } catch (error) {
+  //     console.log(`Error saving ${value} to ${key}`);
+  //   }
+  // };
 
   const checkAsyncStorage = async () => {
     try {
@@ -82,60 +190,6 @@ export default function Auth({ navigation }) {
       console.log(`Error checking AsyncStorage`);
     }
   };
-
-  //   //-------------
-
-  //   const username = 's.shvelidze@sangu.edu.ge';
-  //   const password1 = 'shvelo15';
-
-  //   const base64Credentials = Buffer.from(`${username}:${password1}`).toString('base64');
-  //   const headers = {
-  //     Authorization: `Basic ${base64Credentials}`,
-  //     'Content-Type': 'application/json',
-  //   };
-  // // ----------------
-  //   const requestBody = {
-  //     email: 's.shvelidze@sangu.edu.ge',
-  //     password: 'shvelo15',
-  //   };
-
-  //   const makeRequest = async () => {
-  //     try {
-  //       const response = await fetch('https://ums.sangu.edu.ge/auth/login', {
-  //         method: 'POST',
-  //         headers: headers,
-  //         body: JSON.stringify(requestBody),
-  //       });
-
-  //       // Extract and store the cookie value from the response headers
-  //       const cookie = extractCookie(response.headers);
-
-  //       if (cookie) {
-  //         console.log('Cookie:', cookie);
-  //       }
-
-  //       const data = await response.json();
-  //       console.log('Response Data:', data);
-  //     } catch (error) {
-  //       console.error('Error:', error);
-  //     }
-  //   };
-
-  //   // Function to extract the cookie value from the response headers
-  //   const extractCookie = (headers) => {
-  //     const cookies = headers.raw()['set-cookie'];
-  //     if (cookies && cookies.length > 0) {
-  //       const cookie = cookies[0];
-  //       const cookieValue = cookie.split(';')[0];
-  //       return cookieValue;
-  //     }
-  //     return null;
-  //   };
-
-  //   // Call the function to make the request
-  //   makeRequest();
-
-  //-------------------
 
 
   return (
@@ -168,6 +222,10 @@ export default function Auth({ navigation }) {
             <View>
               {/* disabled={!password || !email } */}
               <TouchableOpacity style={styles.btnContainer} onPress={() => handleLogIn(email, password)}>
+
+                {/* onPress={() => login()}  */}
+
+                {/* onPress={() => handleLogIn(email, password)} */}
                 <Text style={styles.buttonText} >Login</Text>
               </TouchableOpacity>
             </View>

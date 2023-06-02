@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { View, Text } from 'react-native';
-
+import { View, ActivityIndicator } from 'react-native';
+import { useContext } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -18,6 +18,7 @@ import Finances from './screens/Finances/FinancesScreen';
 import Exams from './screens/Exams/ExamsScreen';
 import Documents from './screens/Documents/DocumentsScren';
 import Auth from './screens/Auth/AuthScreen';
+import { AuthContext, AuthProvider } from '../Context/AuthContext';
 
 
 const homeName = 'Home';
@@ -36,7 +37,7 @@ const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 
-function DetailsStack() {
+export function DetailsStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen name='insideDetails' component={Details} options={{ headerShown: false }} />
@@ -49,7 +50,7 @@ function DetailsStack() {
   );
 }
 
-function Tabs() {
+export function Tabs() {
   return (
     <Tab.Navigator
       initialRouteName={homeName}
@@ -81,12 +82,41 @@ function Tabs() {
 
 
 export default function MainContainer() {
+
+  const { isLoading, userToken } = useContext(AuthContext);
+  console.log(isLoading);
+
+  if (isLoading) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size={'large'} />
+      </View>
+    );
+  }
+  console.log(isLoading);
+  console.log(userToken);
+
   return (
     <NavigationContainer>
+      {/* {userToken !== null ?
+
+          [<Stack.Screen key={'auth'} name={AuthName} component={Auth} options={{ headerShown: false }} />,
+          <Stack.Screen key={'dashboard'} name="Dashboard" component={Tabs} options={{ headerShown: false }} />]
+
+          :
+          <Stack.Screen key={'auth'} name={AuthName} component={Auth} options={{ headerShown: false }} />
+        } */}
       <Stack.Navigator>
-        <Stack.Screen name={AuthName} component={Auth} options={{ headerShown: false }} />
-        <Stack.Screen name="Dashboard" component={Tabs} options={{ headerShown: false }} />
+        {userToken !== null ? (
+          <>
+            {/* <Stack.Screen name={AuthName} component={Auth} options={{ headerShown: false }} /> */}
+            <Stack.Screen name="Dashboard" component={Tabs} options={{ headerShown: false }} />
+          </>
+        ) : (
+          <Stack.Screen name={AuthName} component={Auth} options={{ headerShown: false }} />
+        )}
       </Stack.Navigator>
+
     </NavigationContainer>
   )
 }
