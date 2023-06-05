@@ -23,6 +23,7 @@ export const styles = StyleSheet.create({
     height: 25,
     width: 25,
     marginLeft: 10,
+    justifyContent:"center",
   },
   textScore: {
     flex: 1,
@@ -38,7 +39,7 @@ export const styles = StyleSheet.create({
   modalContainer: {
     borderWidth: 1,
     flex: 1,
-    justifyContent: "center",
+    // justifyContent: "center",
     alignItems: "center",
     backgroundColor: "rgba(0, 0, 0, 0.6)",
   },
@@ -108,4 +109,28 @@ export const styles = StyleSheet.create({
     fontSize: 15,
     marginTop: 10,
   },
+
+  // modal styles info
+
+  infoContainer:{
+    width:'90%',
+    height:'20%',
+    marginTop: 20,
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 10,
+    justifyContent:"center",
+    alignSelf:"center",
+  },
+
+  textInfo:{
+    color:'black',
+    fontWeight:"bold",
+    fontSize:16,
+    justifyContent:"center",
+    alignSelf:"center",
+  }
+
 });
+
+

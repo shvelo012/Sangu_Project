@@ -4,6 +4,10 @@ import { View, Text, Image, ScrollView } from "react-native";
 import HomeSubjectRow from '../../../components/HomeSubjectRow/HomeSubjectsRow';
 import jsonData from './data.json';
 import { styles } from './HomeScreen.styles';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+
+
 export default function Home({ navigation }) {
   const [data, setData] = useState([]);
 
@@ -18,31 +22,32 @@ export default function Home({ navigation }) {
   return (
     <>
       <ScrollView>
-        <View style={styles.wholeContainer}>
-          <View style={styles.mainContainer}>
-            <Text style={styles.header}>მიმდინარე სემესტრი</Text>
-          </View>
-          <View style={styles.listContainer}>
-            {subjectData.map((item, index) => (
-              <React.Fragment key={index}>
-                {!isHeaderRendered && (
-                  <View style={styles.subjectInfoResultView}>
-                    <Text style={styles.subjectInfoResult}>საგანი</Text>
-                    <Text style={styles.subjectInfoResult}>ინფორმაცია</Text>
-                    <Text style={styles.subjectInfoResult}>შედეგი</Text>
-                  </View>
-                )}
-                <HomeSubjectRow
-                  subject={item.subject}
-                  info={[require('../../../img/comment.png'), require('../../../img/edit.png'), require('../../../img/idea.png')]}
-                  total={item.totalScore}
-                  ScoreDetails={item.details}
-                />
-                {isHeaderRendered = true}
-              </React.Fragment>
-            ))}
-          </View>
-        </View>
+      <View style={styles.wholeContainer}>
+      <View style={styles.mainContainer}>
+        <Text style={styles.header}>მიმდინარე სემესტრი</Text>
+      </View>
+      <View style={styles.listContainer}>
+        {subjectData.map((item, index) => (
+          <React.Fragment key={index}>
+            {!isHeaderRendered && (
+              <View style={styles.subjectInfoResultView}>
+                <Text style={styles.subjectInfoResult}>საგანი</Text>
+                <Text style={styles.subjectInfoResult}>ინფორმაცია</Text>
+                <Text style={styles.subjectInfoResult}>შედეგი</Text>
+              </View>
+            )}
+            <HomeSubjectRow
+              subject={item.subject}
+              info={[require('../../../img/comment.png'),require('../../../img/edit.png'),require('../../../img/idea.png'),
+              ]}
+              total={item.totalScore}
+              ScoreDetails={item.details}
+            />
+            {isHeaderRendered = true}
+          </React.Fragment>
+        ))}
+      </View>
+      </View>
       </ScrollView>
     </>
   );
