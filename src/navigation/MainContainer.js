@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { AuthContext } from '../Context/AuthContext';
 
 
 //screens
@@ -18,7 +19,6 @@ import Finances from './screens/Finances/FinancesScreen';
 import Exams from './screens/Exams/ExamsScreen';
 import Documents from './screens/Documents/DocumentsScren';
 import Auth from './screens/Auth/AuthScreen';
-import { AuthContext, AuthProvider } from '../Context/AuthContext';
 
 
 const homeName = 'Home';
