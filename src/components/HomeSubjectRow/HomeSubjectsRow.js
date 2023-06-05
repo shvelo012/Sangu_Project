@@ -55,10 +55,12 @@ const HomeSubjectsRow = ({ subject, info, total, ScoreDetails }) => {
         <Text style={styles.textScore}>{total}</Text>
       </TouchableOpacity>
 
+
+      {/*კონსულტაციები*/}
       <Modal visible={modalVisible4} animationType="slide" transparent={false}>
         <View style={styles.modalContainer}>
           <View style={styles.headerContainer}>
-            <Text style={styles.modalHeader}>{subject}</Text>
+            <Text style={styles.modalHeader}>კონსულტაციები</Text>
             <TouchableOpacity onPress={closeModal4}>
               <View>
                 <Image
@@ -68,15 +70,20 @@ const HomeSubjectsRow = ({ subject, info, total, ScoreDetails }) => {
               </View>
             </TouchableOpacity>
           </View>
+          <View style={styles.infoContainer}>
+            <Text style={styles.textInfo}>დამატებითი ინფორმაცია არ მოიძებნა
+            </Text>
+          </View>
         </View>
+
       </Modal>
 
 
-
+      {/*// სილაბუსი*/}
       <Modal visible={modalVisible3} animationType="slide" transparent={false}>
         <View style={styles.modalContainer}>
           <View style={styles.headerContainer}>
-            <Text style={styles.modalHeader}>{subject}</Text>
+            <Text style={styles.modalHeader}>სილაბუსი</Text>
             <TouchableOpacity onPress={closeModal3}>
               <View>
                 <Image
@@ -86,14 +93,20 @@ const HomeSubjectsRow = ({ subject, info, total, ScoreDetails }) => {
               </View>
             </TouchableOpacity>
           </View>
+          <View style={styles.infoContainer}>
+            <Text style={styles.textInfo}>დამატებითი ინფორმაცია არ მოიძებნა
+            </Text>
+          </View>
         </View>
       </Modal>
 
 
+
+      {/*// ჯგუფის ინფორმაცია*/}
       <Modal visible={modalVisible2} animationType="slide" transparent={false}>
         <View style={styles.modalContainer}>
           <View style={styles.headerContainer}>
-            <Text style={styles.modalHeader}>{subject}</Text>
+            <Text style={styles.modalHeader}> ჯგუფის ინფორმაცია </Text>
             <TouchableOpacity onPress={closeModal2}>
               <View>
                 <Image
@@ -102,6 +115,11 @@ const HomeSubjectsRow = ({ subject, info, total, ScoreDetails }) => {
                 />
               </View>
             </TouchableOpacity>
+
+          </View>
+          <View style={styles.infoContainer}>
+            <Text style={styles.textInfo}>დამატებითი ინფორმაცია არ მოიძებნა
+            </Text>
           </View>
         </View>
       </Modal>

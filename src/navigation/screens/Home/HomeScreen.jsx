@@ -4,6 +4,10 @@ import { View, Text, Image, ScrollView } from "react-native";
 import HomeSubjectRow from '../../../components/HomeSubjectRow/HomeSubjectsRow';
 import jsonData from './data.json';
 import { styles } from './HomeScreen.styles';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+
+
 export default function Home({ navigation }) {
   const [data, setData] = useState([]);
 
@@ -34,7 +38,8 @@ export default function Home({ navigation }) {
             )}
             <HomeSubjectRow
               subject={item.subject}
-              info={[require('../../../img/comment.png'),require('../../../img/edit.png'),require('../../../img/idea.png')]}
+              info={[require('../../../img/comment.png'),require('../../../img/edit.png'),require('../../../img/idea.png'),
+              ]}
               total={item.totalScore}
               ScoreDetails={item.details}
             />
