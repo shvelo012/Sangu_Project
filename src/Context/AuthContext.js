@@ -7,10 +7,6 @@ export const AuthProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [userToken, setUserToken] = useState(null);
 
-
-
-
-
   const login1 = async () => {
     setIsLoading(true);
     setUserToken('isoiso');

@@ -1589,6 +1589,21 @@
     semver "^6.3.0"
     shell-quote "^1.7.3"
 
+"@react-native-community/cli-tools@^11.3.1":
+  version "11.3.1"
+  resolved "https://registry.npmjs.org/@react-native-community/cli-tools/-/cli-tools-11.3.1.tgz"
+  integrity sha512-JuV2RXTemrsl8fwLgw0SYZsMMCcUwxyQWrcuMTds/bBBT0ij6CDVePagyVjbrWzdPbvPoX6Wr1CFKsem2vOfrQ==
+  dependencies:
+    appdirsjs "^1.2.4"
+    chalk "^4.1.2"
+    find-up "^5.0.0"
+    mime "^2.4.1"
+    node-fetch "^2.6.0"
+    open "^6.2.0"
+    ora "^5.4.1"
+    semver "^6.3.0"
+    shell-quote "^1.7.3"
+
 "@react-native-community/cli-types@^10.0.0":
   version "10.0.0"
   resolved "https://registry.npmjs.org/@react-native-community/cli-types/-/cli-types-10.0.0.tgz"
