@@ -58,6 +58,7 @@ export const AuthProvider = ({ children }) => {
       } else {
         console.error('Login failed');
         setIsLoading(false);
+        return false;
       }
     } catch (error) {
       console.error(error);
