@@ -84,7 +84,7 @@ export function Tabs() {
 export default function MainContainer() {
 
   const { isLoading, userToken } = useContext(AuthContext);
-  console.log(isLoading);
+  // console.log(isLoading);
 
   if (isLoading) {
     return (
@@ -93,8 +93,8 @@ export default function MainContainer() {
       </View>
     );
   }
-  console.log(isLoading);
-  console.log(userToken);
+  // console.log(isLoading);
+  // console.log(userToken);
 
   return (
     <NavigationContainer>

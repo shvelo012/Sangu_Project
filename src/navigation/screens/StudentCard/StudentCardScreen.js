@@ -1,23 +1,12 @@
 import * as React from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import StudentCardRow from '../../../components/StudentCardRow/StudentCardRow';
-import Data from './CardDetails.json';
 import { styles } from '../Home/HomeScreen.styles';
 import Header from '../../../components/Header/Header';
+import { useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const CardDetails = Data;
-let subjectData = [];
-for (i = 0; i < CardDetails.length; i++) {
-  subjectData.push({
-    name: CardDetails[i].subjectWrapper.name,
-    semester: CardDetails[i].semester,
-    credits: CardDetails[i].credits,
-    score: CardDetails[i].score,
-    result: CardDetails[i].result,
-    state: CardDetails[i].state
-  })
-}
-const SortedData = subjectData.sort((a, b) => b.semester - a.semester);
+
 // console.log(subjectData);
 
 // const log = () => {
@@ -25,6 +14,57 @@ const SortedData = subjectData.sort((a, b) => b.semester - a.semester);
 // }
 
 export default function StudentCard({ navigation }) {
+  const [data, setData] = useState([]);
+  const [sendRequest, SetSendRequest] = useState(true);
+  {
+    sendRequest &&
+      AsyncStorage.getItem('userToken')
+        .then(userToken => {
+          // Create the headers object with the cookie
+          const headers = {
+            Cookie: userToken,
+          };
+
+          // Make the GET request with the headers
+          return fetch('https://ums.sangu.edu.ge/subject/student/list', {
+            method: 'GET',
+            headers: headers,
+          });
+        })
+        .then(response => {
+          if (response.ok) {
+            // Handle the successful response
+            SetSendRequest(false);
+            return response.json();
+          } else {
+            // Handle the error response
+            throw new Error('Request failed with status code ' + response.status);
+          }
+        })
+        .then(data => {
+          // Process the response data
+          console.log('Response:', data);
+          setData(data);
+        })
+        .catch(error => {
+          // Handle any errors
+          SetSendRequest(false);
+          console.error('Error:', error);
+        });
+  }
+  const CardDetails = data;
+  let subjectData = [];
+  for (i = 0; i < CardDetails.length; i++) {
+    subjectData.push({
+      name: CardDetails[i].subjectWrapper.name,
+      semester: CardDetails[i].semester,
+      credits: CardDetails[i].credits,
+      score: CardDetails[i].score,
+      result: CardDetails[i].result,
+      state: CardDetails[i].state
+    })
+  }
+  const SortedData = subjectData.sort((a, b) => b.semester - a.semester);
   return (
     <>
       <Header onPress={() => { }} />
