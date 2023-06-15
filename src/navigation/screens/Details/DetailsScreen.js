@@ -20,22 +20,22 @@ export default function Details({ navigation }) {
   const { logOut } = useContext(AuthContext);
 
 
-  const handleLogOut = async () => {
-    await clearAsyncStorage();
-    navigation.reset({
-      index: 0,
-      routes: [{ name: "Auth" }],
-    });
-  };
+  // const handleLogOut = async () => {
+  //   await clearAsyncStorage();
+  //   navigation.reset({
+  //     index: 0,
+  //     routes: [{ name: "Auth" }],
+  //   });
+  // };
 
-  async function clearAsyncStorage() {
-    try {
-      await AsyncStorage.clear();
-      console.log("AsyncStorage successfully cleared!");
-    } catch (error) {
-      console.error("Error clearing AsyncStorage: ", error);
-    }
-  }
+  // async function clearAsyncStorage() {
+  //   try {
+  //     await AsyncStorage.clear();
+  //     console.log("AsyncStorage successfully cleared!");
+  //   } catch (error) {
+  //     console.error("Error clearing AsyncStorage: ", error);
+  //   }
+  // }
 
 
   return (
