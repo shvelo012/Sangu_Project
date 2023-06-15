@@ -3,6 +3,7 @@ import { View, Text, ScrollView } from 'react-native';
 import StudentCardRow from '../../../components/StudentCardRow/StudentCardRow';
 import Data from './CardDetails.json';
 import { styles } from '../Home/HomeScreen.styles';
+import Header from '../../../components/Header/Header';
 
 const CardDetails = Data;
 let subjectData = [];
@@ -26,6 +27,7 @@ const SortedData = subjectData.sort((a, b) => b.semester - a.semester);
 export default function StudentCard({ navigation }) {
   return (
     <>
+      <Header onPress={() => { }} />
       <ScrollView>
 
         {/* <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
