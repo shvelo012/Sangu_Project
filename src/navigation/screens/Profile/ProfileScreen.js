@@ -52,12 +52,12 @@ export default function Profile({ navigation }) {
   const infoData = {
     fullName: info.firstName + ' ' + info.lastName,
     // status: info.profiles[0]?.state,
-    sex: info.gender === 'female' ? 'ქალი' : 'კაცი',
+    sex: info.gender === 'female' ? 'ქაგლი' : 'კაცი',
     Nationality: info.nationality,
     IDnum: info.personalNo,
     TelNum: info.phone,
     Email: info.email,
-    // Faculty: info.profiles[0].info.programName,
+    Faculty: info.faculties
   };
   let statusColor = infoData.status === 'active' ? 'green' : 'red';
 
