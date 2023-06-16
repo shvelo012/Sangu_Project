@@ -6,7 +6,6 @@ import Header from '../../../components/Header/Header';
 import { useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
 // console.log(subjectData);
 
 // const log = () => {
@@ -67,7 +66,7 @@ export default function StudentCard({ navigation }) {
   const SortedData = subjectData.sort((a, b) => b.semester - a.semester);
   return (
     <>
-      <Header onPress={() => { }} />
+      <Header onPress={() => navigation.navigate("insideDetails")} title={'სასწავლო ბარათი'} />
       <ScrollView>
 
         {/* <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
