@@ -41,11 +41,11 @@ export function DetailsStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen name='insideDetails' component={Details} options={{ headerShown: false }} />
-      <Stack.Screen name={StudentCardName} component={StudentCard} />
-      <Stack.Screen name={ProfileName} component={Profile} />
-      <Stack.Screen name={FinancesName} component={Finances} />
-      <Stack.Screen name={ExamsName} component={Exams} />
-      <Stack.Screen name={DocumentsName} component={Documents} />
+      <Stack.Screen name={StudentCardName} component={StudentCard} options={{ headerShown: false }} />
+      <Stack.Screen name={ProfileName} component={Profile} options={{ headerShown: false }} />
+      <Stack.Screen name={FinancesName} component={Finances} options={{ headerShown: false }} />
+      <Stack.Screen name={ExamsName} component={Exams} options={{ headerShown: false }} />
+      <Stack.Screen name={DocumentsName} component={Documents} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 }

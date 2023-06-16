@@ -1,15 +1,15 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import { Image } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 
-const Header = ({ onPress }) => {
+const Header = ({ onPress, title }) => {
   return (
     <View style={styles.header}>
       <TouchableOpacity style={styles.iconContainer} onPress={onPress}>
-        <Image style={styles.Image} source={require('../../img/arrowLeft.png')} />
-        <Text style={styles.icon}>Icon</Text>
+        <Image style={styles.image} source={require('../../img/arrowLeft.png')} />
       </TouchableOpacity>
-      <Text style={styles.title}>Header Title</Text>
+      <View style={styles.titlePosition}>
+        <Text style={styles.title}>{title}</Text>
+      </View>
     </View>
   );
 };
@@ -30,12 +30,21 @@ const styles = {
     fontSize: 20,
     fontWeight: 'bold',
     color: 'black',
+    width: 5 + "%",
+
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
     color: 'black',
+    alignItems: 'center',
   },
+  image: {
+    // width: 100 + '%',
+  },
+  titlePosition: {
+
+  }
 };
 
 export default Header;
