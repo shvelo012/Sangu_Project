@@ -38,7 +38,7 @@ export default function Home({ navigation }) {
           }
         })
         .then(data => {
-          console.log('Response:', data);
+          // console.log('Response:', data);
           setData(data);
         })
         .catch(error => {
@@ -52,7 +52,7 @@ export default function Home({ navigation }) {
   for (i = 0; i < mass.length; i++) {
     subjectData.push({ subject: mass[i].name, lecturer: mass[i].lecturer, totalScore: mass[i].score, details: mass[i].details });
   }
-  console.log(userToken);
+  // console.log(userToken);
   let isHeaderRendered = false;
 
   return (

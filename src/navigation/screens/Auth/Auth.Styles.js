@@ -40,6 +40,7 @@ export const styles = StyleSheet.create({
   txt: {
     marginStart: 4,
     color: '#111111',
+    textDecorationColor: 'black',
 
   },
   forgoTxt: {
@@ -54,6 +55,6 @@ export const styles = StyleSheet.create({
     fontFamily: 'Helvetica',
     fontSize: 16,
     lineHeight: 18,
-    fontWeight:'bold',
+    fontWeight: 'bold',
   }
 });

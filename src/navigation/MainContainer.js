@@ -6,6 +6,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { AuthContext } from '../Context/AuthContext';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useState } from 'react';
 
 
 //screens
@@ -84,7 +86,6 @@ export function Tabs() {
 export default function MainContainer() {
 
   const { isLoading, userToken } = useContext(AuthContext);
-  // console.log(isLoading);
 
   if (isLoading) {
     return (
@@ -93,23 +94,12 @@ export default function MainContainer() {
       </View>
     );
   }
-  // console.log(isLoading);
-  // console.log(userToken);
 
   return (
     <NavigationContainer>
-      {/* {userToken !== null ?
-
-          [<Stack.Screen key={'auth'} name={AuthName} component={Auth} options={{ headerShown: false }} />,
-          <Stack.Screen key={'dashboard'} name="Dashboard" component={Tabs} options={{ headerShown: false }} />]
-
-          :
-          <Stack.Screen key={'auth'} name={AuthName} component={Auth} options={{ headerShown: false }} />
-        } */}
       <Stack.Navigator>
         {userToken !== null ? (
           <>
-            {/* <Stack.Screen name={AuthName} component={Auth} options={{ headerShown: false }} /> */}
             <Stack.Screen name="Dashboard" component={Tabs} options={{ headerShown: false }} />
           </>
         ) : (

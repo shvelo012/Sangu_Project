@@ -23,17 +23,14 @@ function getDayOfWeek(day) {
 export default function Table({ navigation }) {
   const [data, setData] = useState([]);
   const [sendRequest, SetSendRequest] = useState(true);
-  // const { userToken } = useContext(AuthContext);
   {
     sendRequest &&
       AsyncStorage.getItem('userToken')
         .then(userToken => {
-          // Create the headers object with the cookie
           const headers = {
             Cookie: userToken,
           };
 
-          // Make the GET request with the headers
           return fetch('https://ums.sangu.edu.ge/session/student/list', {
             method: 'GET',
             headers: headers,
@@ -41,21 +38,17 @@ export default function Table({ navigation }) {
         })
         .then(response => {
           if (response.ok) {
-            // Handle the successful response
             SetSendRequest(false);
             return response.json();
           } else {
-            // Handle the error response
             throw new Error('Request failed with status code ' + response.status);
           }
         })
         .then(data => {
-          // Process the response data
           console.log('Response:', data);
           setData(data);
         })
         .catch(error => {
-          // Handle any errors
           SetSendRequest(false);
           console.error('Error:', error);
         });
