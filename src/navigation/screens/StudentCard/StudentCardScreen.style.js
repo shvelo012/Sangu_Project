@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { scaled } from "../../../components/theme/scaler";
 
 export const styles = StyleSheet.create({
     topContent: {
@@ -6,52 +7,63 @@ export const styles = StyleSheet.create({
         justifyContent: "space-between",
 
     },
-    topContentInfo:{
-        flexDirection:"row",
-        gap:30,
+    topContentInfo: {
+        flexDirection: "row",
+        gap: scaled(30),
     },
 
 
-    item:{
-        color:'black',
-        marginTop:20,
-      marginBottom:5,
+    item: {
+        color: 'black',
+        fontSize: scaled(20),
+        marginTop: scaled(20),
+        marginBottom: scaled(5),
+        marginLeft: scaled(10),
     },
 
 
 
-    bottomContent:{
-        borderRadius:10,
-        marginLeft:10,
-        marginRight:10,
-       backgroundColor:'white',
-        marginBottom:10,
+    bottomContent: {
+        marginLeft: scaled(10),
+        marginRight: scaled(10),
+        borderWidth: 0.5,
+        borderTopColor: 'grey',
+        marginBottom: scaled(3),
+        marginTop: scaled(3),
 
     },
 
-    bottomContentHeader:{
-        flexDirection:"row",
-        justifyContent:"space-between",
-        borderBottomWidth:0.5,
-        paddingTop:10,
-        paddingBottom:10,
+    bottomContentHeader: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        paddingTop: 10,
+        paddingBottom: 10,
+        marginLeft: scaled(10),
+        marginRight: scaled(10),
+        borderWidth: 0.5,
+        borderTopColor: 'grey',
+        marginBottom: scaled(3),
+        marginTop: scaled(3),
+        backgroundColor: "grey",
     },
 
-    averageText:{
-      color:'black'
+    averageText: {
+        color: 'black'
     },
-    creditText:{
-        color:'black'
+    creditText: {
+        color: 'black'
     },
 
-    subjectName:{
-        paddingLeft:20,
-        color:'black',
+    subjectName: {
+        paddingLeft: scaled(20),
+        color: 'red',
+        fontSize: scaled(16),
     },
-    subjectResult:{
-        color:'black',
-        width:'30%',
-        textAlign:"center"
+    subjectResult: {
+        color: 'red',
+        width: '30%',
+        textAlign: "center",
+        fontSize: scaled(16),
     }
 
 });

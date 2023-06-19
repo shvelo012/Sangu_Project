@@ -75,11 +75,10 @@ export default function Table({ navigation }) {
   return (
     <>
 
-      <ScrollView style={styles.scrollContainer}>
+      <ScrollView>
         <View style={styles.wholeContainer}>
           <View style={styles.mainContainer}>
             <Text
-              // onPress={() => navigation.navigate('Home')}
               style={styles.header}>ცხრილი</Text>
           </View>
 

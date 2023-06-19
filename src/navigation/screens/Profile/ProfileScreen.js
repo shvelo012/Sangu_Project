@@ -15,12 +15,10 @@ export default function Profile({ navigation }) {
     sendRequest &&
       AsyncStorage.getItem('userToken')
         .then(userToken => {
-          // Create the headers object with the cookie
           const headers = {
             Cookie: userToken,
           };
 
-          // Make the GET request with the headers
           return fetch('https://ums.sangu.edu.ge/auth/passport', {
             method: 'GET',
             headers: headers,
@@ -28,21 +26,17 @@ export default function Profile({ navigation }) {
         })
         .then(response => {
           if (response.ok) {
-            // Handle the successful response
             SetSendRequest(false);
             return response.json();
           } else {
-            // Handle the error response
             throw new Error('Request failed with status code ' + response.status);
           }
         })
         .then(data => {
-          // Process the response data
           console.log('Response:', data);
           setData(data);
         })
         .catch(error => {
-          // Handle any errors
           SetSendRequest(false);
           console.error('Error:', error);
         });
@@ -52,7 +46,7 @@ export default function Profile({ navigation }) {
   const infoData = {
     fullName: info.firstName + ' ' + info.lastName,
     // status: info.profiles[0]?.state,
-    sex: info.gender === 'female' ? 'ქაგლი' : 'კაცი',
+    sex: info.gender === 'female' ? 'ქალი' : 'კაცი',
     Nationality: info.nationality,
     IDnum: info.personalNo,
     TelNum: info.phone,
@@ -65,8 +59,7 @@ export default function Profile({ navigation }) {
   return (
     <>
       <Header onPress={() => navigation.navigate("insideDetails")} title={'პროფილი'} />
-
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <ScrollView>
         <View style={styles.container}>
           <View style={styles.topContent}>
             <Text style={styles.nameStyle}>{infoData.fullName}</Text>
