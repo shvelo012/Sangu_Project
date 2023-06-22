@@ -9,7 +9,6 @@ import Header from '../../../components/Header/Header';
 
 
 export default function Profile({ navigation }) {
-  // const [data, setData] = useState([]);
   const [sendRequest, SetSendRequest] = useState(true);
   const [infoData, setInfoData] = useState({});
   const [statusColor, setStatusColor] = useState();
@@ -36,7 +35,6 @@ export default function Profile({ navigation }) {
         })
         .then(data => {
           console.log('Response:', data);
-          // setData(data);
 
           return new Promise(resolve => {
             const infoData = {
@@ -61,6 +59,7 @@ export default function Profile({ navigation }) {
           console.error('Error:', error);
         });
   }
+  console.log(infoData);
 
   return (
     <>
