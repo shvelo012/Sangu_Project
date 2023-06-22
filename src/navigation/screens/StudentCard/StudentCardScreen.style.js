@@ -48,7 +48,8 @@ export const styles = StyleSheet.create({
     },
 
     averageText: {
-        color: 'black'
+        color: 'black',
+        marginLeft: scaled(16),
     },
     creditText: {
         color: 'black'

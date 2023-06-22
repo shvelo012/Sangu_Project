@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useState } from 'react';
 import { View, Text, ScrollView } from "react-native";
 import HomeSubjectRow from '../../../components/HomeSubjectRow/HomeSubjectsRow';
-import jsonData from './data.json';
 import { styles } from './HomeScreen.styles';
 import { AuthContext } from '../../../Context/AuthContext';
 import { useContext } from 'react';
@@ -11,9 +10,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Home({ navigation }) {
   const [data, setData] = useState([]);
-  const { userToken } = useContext(AuthContext);
+  // const { userToken } = useContext(AuthContext);
   const [sendRequest, SetSendRequest] = useState(true);
-
 
 
   {
