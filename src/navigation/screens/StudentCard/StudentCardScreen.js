@@ -51,7 +51,6 @@ export default function StudentCard({ navigation }) {
         setData(subjectData);
         setSortedData(data.sort((a, b) => b.semester - a.semester));
         setSubjectData(subjectData);
-        // console.log(subjectData);
       })
 
 
@@ -74,8 +73,6 @@ export default function StudentCard({ navigation }) {
           testInfo[semester][0] += subjectData[i].credits;
           testInfo[semester][1] += subjectData[i].score;
           subjectCount++;
-          console.log('testInfo[semester][0]: ' + testInfo[semester][0]);
-          console.log('testInfo[semester][1]: ' + testInfo[semester][1]);
         }
       } else {
         testInfo[semester][1] /= subjectCount;
@@ -91,8 +88,6 @@ export default function StudentCard({ navigation }) {
     setSemesterInfo(testInfo);
 
   }, [data]);
-  // console.log(subjectData);
-  console.log(semesterInfo);
   return (
     <>
       <View>
@@ -106,7 +101,7 @@ export default function StudentCard({ navigation }) {
                   {semesterInfo[item.semester] && sortedData.state !== 'current' ? (
                     <View style={styles.topContentInfo}>
                       <Text style={styles.averageText}>საშუალო - {item.state == 'current' ? null : semesterInfo[item.semester][1].toFixed(2)} </Text>
-                      <Text style={styles.creditText}>კრედიტები - {semesterInfo[item.semester][0]}</Text>
+                      <Text style={styles.creditText}>კრედიტები - {item.state == 'current' ? null : semesterInfo[item.semester][0]}</Text>
                     </View>) : null}
                 </View>
               ) : null}

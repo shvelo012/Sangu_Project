@@ -34,7 +34,7 @@ export default function Profile({ navigation }) {
           }
         })
         .then(data => {
-          console.log('Response:', data);
+          // console.log('Response:', data);
 
           return new Promise(resolve => {
             const infoData = {
@@ -59,7 +59,6 @@ export default function Profile({ navigation }) {
           console.error('Error:', error);
         });
   }
-  console.log(infoData);
 
   return (
     <>

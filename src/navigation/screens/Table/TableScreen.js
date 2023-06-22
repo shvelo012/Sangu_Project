@@ -45,7 +45,7 @@ export default function Table({ navigation }) {
           }
         })
         .then(data => {
-          console.log('Response:', data);
+          // console.log('Response:', data);
           setData(data);
         })
         .catch(error => {
