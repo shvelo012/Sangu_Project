@@ -5,7 +5,7 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
-
+  Linking,
   TouchableOpacity
 
 } from 'react-native';
@@ -27,31 +27,12 @@ export default function Auth({ navigation }) {
   const [isFailed, setIsFailed] = useState();
 
   const handleLogIn = async (email, password) => {
-    // setEmail(email);
-    // setPassword(password);
-    // console.log(await login1(email, password));
     const a = await login1(email, password);
-    console.log(a + 'a');
-    if (a === true) {
-      // console.log(a + ': if');
-      // setIsFailed(false);
-      // console.log(isFailed + 'it is me ');
-    } else {
-      // console.log(a + ': else');
-      // setIsFailed(true);
-      // console.log(isFailed + ' nope');
-    }
-    // setIsFailed('niggga');
-    // console.log(isFailed + '  1');
-
   };
 
-  // const testNavigation = () => {
-  //   navigation.reset({
-  //     index: 0,
-  //     routes: [{ name: 'Dashboard' }],
-  //   });
-  // };
+  const handlePress = () => {
+    Linking.openURL("https://ums.sangu.edu.ge/#!/reset");
+  };
 
   const validateEmail = email => {
     const emailRegex = /\S+@\S+\.\S+/;
@@ -59,26 +40,14 @@ export default function Auth({ navigation }) {
   };
 
   const handleEmailChange = email => {
-    setIsValid(validateEmail(email));
     setEmail(email);
+    setIsValid(validateEmail(email));
 
   };
 
-  const handlePassworChange = password => {
+  const handlePasswordChange = password => {
     setPassword(password);
   };
-
-  // const checkAsyncStorage = async () => {
-  //   try {
-  //     const allKeys = await AsyncStorage.getAllKeys();
-  //     setData(allKeys);
-  //     console.log('All keys:', allKeys);
-
-  //   } catch {
-  //     console.log(`Error checking AsyncStorage`);
-  //   }
-  // };
-
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', backgroundColor: 'white' }}>
@@ -100,12 +69,13 @@ export default function Auth({ navigation }) {
             <TextInput
               placeholder='********'
               style={styles.textInput}
-              onChangeText={handlePassworChange}
+              onChangeText={handlePasswordChange}
               value={password}
               secureTextEntry={true}
+              
             />
             <View style={{ alignItems: 'flex-start' }}>
-              <Text style={styles.forgoTxt} >Forgot password?</Text>
+              <Text onPress={handlePress} style={styles.forgoTxt} >Forgot password?</Text>
             </View>
             <View>
               {/* disabled={!password || !email } */}

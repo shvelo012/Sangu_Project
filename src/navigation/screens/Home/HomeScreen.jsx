@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useState } from 'react';
 import { View, Text, ScrollView } from "react-native";
 import HomeSubjectRow from '../../../components/HomeSubjectRow/HomeSubjectsRow';
-import jsonData from './data.json';
 import { styles } from './HomeScreen.styles';
 import { AuthContext } from '../../../Context/AuthContext';
 import { useContext } from 'react';
@@ -11,9 +10,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Home({ navigation }) {
   const [data, setData] = useState([]);
-  const { userToken } = useContext(AuthContext);
+  // const { userToken } = useContext(AuthContext);
   const [sendRequest, SetSendRequest] = useState(true);
-
 
 
   {
@@ -38,7 +36,7 @@ export default function Home({ navigation }) {
           }
         })
         .then(data => {
-          console.log('Response:', data);
+          // console.log('Response:', data);
           setData(data);
         })
         .catch(error => {
@@ -52,7 +50,7 @@ export default function Home({ navigation }) {
   for (i = 0; i < mass.length; i++) {
     subjectData.push({ subject: mass[i].name, lecturer: mass[i].lecturer, totalScore: mass[i].score, details: mass[i].details });
   }
-  console.log(userToken);
+  // console.log(userToken);
   let isHeaderRendered = false;
 
   return (

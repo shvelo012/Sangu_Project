@@ -9,18 +9,17 @@ import Header from '../../../components/Header/Header';
 
 
 export default function Profile({ navigation }) {
-  const [data, setData] = useState([]);
   const [sendRequest, SetSendRequest] = useState(true);
+  const [infoData, setInfoData] = useState({});
+  const [statusColor, setStatusColor] = useState();
   {
     sendRequest &&
       AsyncStorage.getItem('userToken')
         .then(userToken => {
-          // Create the headers object with the cookie
           const headers = {
             Cookie: userToken,
           };
 
-          // Make the GET request with the headers
           return fetch('https://ums.sangu.edu.ge/auth/passport', {
             method: 'GET',
             headers: headers,
@@ -28,45 +27,44 @@ export default function Profile({ navigation }) {
         })
         .then(response => {
           if (response.ok) {
-            // Handle the successful response
             SetSendRequest(false);
             return response.json();
           } else {
-            // Handle the error response
             throw new Error('Request failed with status code ' + response.status);
           }
         })
         .then(data => {
-          // Process the response data
           console.log('Response:', data);
-          setData(data);
+
+          return new Promise(resolve => {
+            const infoData = {
+              fullName: data.firstName + ' ' + data.lastName,
+              status: data.profiles[0].state ? data.profiles[0].state : null,
+              sex: data.gender === 'female' ? 'მდედრობითი' : 'მამრობითი',
+              Nationality: data.nationality,
+              IDnum: data.personalNo,
+              TelNum: data.phone,
+              Email: data.email,
+              // Faculty: info.faculties
+            };
+            resolve(infoData);
+          });
+        })
+        .then(infoData => {
+          setStatusColor(infoData.status === 'active' ? 'green' : 'red');
+          setInfoData(infoData);
         })
         .catch(error => {
-          // Handle any errors
           SetSendRequest(false);
           console.error('Error:', error);
         });
   }
-
-  const info = data;
-  const infoData = {
-    fullName: info.firstName + ' ' + info.lastName,
-    // status: info.profiles[0]?.state,
-    sex: info.gender === 'female' ? 'ქალი' : 'კაცი',
-    Nationality: info.nationality,
-    IDnum: info.personalNo,
-    TelNum: info.phone,
-    Email: info.email,
-    // Faculty: info.profiles[0].info.programName,
-  };
-  let statusColor = infoData.status === 'active' ? 'green' : 'red';
-
+  console.log(infoData);
 
   return (
     <>
       <Header onPress={() => navigation.navigate("insideDetails")} title={'პროფილი'} />
-
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <ScrollView>
         <View style={styles.container}>
           <View style={styles.topContent}>
             <Text style={styles.nameStyle}>{infoData.fullName}</Text>
@@ -92,10 +90,10 @@ export default function Profile({ navigation }) {
             <Text style={styles.infoContentStyle}>ელ-ფოსტა</Text>
             <Text style={styles.infoContentStyle}>{infoData.Email}</Text>
           </Row>
-          <Row style={styles.lastElement}>
+          {/* <Row style={styles.lastElement}>
             <Text style={[styles.infoContentStyle, styles.lastContentStyle]}>ფაკულტეტი</Text>
             <Text style={[styles.infoContentStyle, styles.lastContentStyle]}>{infoData.Faculty}</Text>
-          </Row>
+          </Row> */}
         </View>
       </ScrollView>
     </>

@@ -1,11 +1,7 @@
 import * as React from "react";
 import { useContext } from "react";
 import { AuthContext } from "../../../Context/AuthContext";
-import { View, Text, Button, Linking, Image, TouchableOpacity, ScrollView } from "react-native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { useNavigation } from "@react-navigation/native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { View, Text, Linking, Image, TouchableOpacity, ScrollView } from "react-native";
 import { styles } from "./DetailsScreen.styles";
 
 
