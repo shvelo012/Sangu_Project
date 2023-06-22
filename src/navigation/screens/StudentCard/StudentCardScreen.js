@@ -84,7 +84,9 @@ export default function StudentCard({ navigation }) {
         subjectCount = 1;
       }
     }
-    testInfo[semester][1] /= subjectCount;
+    if (semester in testInfo) {
+      testInfo[semester][1] /= subjectCount;
+    }
 
     setSemesterInfo(testInfo);
 
@@ -103,7 +105,7 @@ export default function StudentCard({ navigation }) {
                   <Text style={styles.item}>{item.semester} სემესტრი</Text>
                   {semesterInfo[item.semester] && sortedData.state !== 'current' ? (
                     <View style={styles.topContentInfo}>
-                      <Text style={styles.averageText}>საშუალო - {item.state == 'current' ? null : semesterInfo[item.semester][1]} </Text>
+                      <Text style={styles.averageText}>საშუალო - {item.state == 'current' ? null : semesterInfo[item.semester][1].toFixed(2)} </Text>
                       <Text style={styles.creditText}>კრედიტები - {semesterInfo[item.semester][0]}</Text>
                     </View>) : null}
                 </View>
