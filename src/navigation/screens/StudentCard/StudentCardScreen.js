@@ -6,6 +6,7 @@ import { styles } from './StudentCardScreen.style';
 import Header from '../../../components/Header/Header';
 import { useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { scaled } from '../../../components/theme/scaler';
 
 
 export default function StudentCard({ navigation }) {
@@ -61,7 +62,6 @@ export default function StudentCard({ navigation }) {
   }, [sendRequest]);
 
   useEffect(() => {
-    // console.log('cycled');
     let testInfo = {};
     let subjectCount = 0;
     let semester = 1;
@@ -74,6 +74,8 @@ export default function StudentCard({ navigation }) {
           testInfo[semester][0] += subjectData[i].credits;
           testInfo[semester][1] += subjectData[i].score;
           subjectCount++;
+          console.log('testInfo[semester][0]: ' + testInfo[semester][0]);
+          console.log('testInfo[semester][1]: ' + testInfo[semester][1]);
         }
       } else {
         testInfo[semester][1] /= subjectCount;
@@ -81,13 +83,13 @@ export default function StudentCard({ navigation }) {
         testInfo[semester] = [subjectData[i].credits, subjectData[i].score];
         subjectCount = 1;
       }
-      testInfo[semester][1] /= subjectCount;
     }
+    testInfo[semester][1] /= subjectCount;
 
     setSemesterInfo(testInfo);
 
   }, [data]);
-  console.log(subjectData);
+  // console.log(subjectData);
   console.log(semesterInfo);
   return (
     <>
@@ -128,7 +130,9 @@ export default function StudentCard({ navigation }) {
               </View>
             </View>
           ))}
+          <View style={{ height: scaled(80) }} />
         </ScrollView>
+
       </View>
     </>
 
