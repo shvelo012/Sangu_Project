@@ -50,7 +50,7 @@ export default function StudentCard({ navigation }) {
         setData(subjectData);
         setSortedData(data.sort((a, b) => b.semester - a.semester));
         setSubjectData(subjectData);
-        console.log(subjectData);
+        // console.log(subjectData);
       })
 
 
@@ -87,7 +87,8 @@ export default function StudentCard({ navigation }) {
     setSemesterInfo(testInfo);
 
   }, [data]);
-
+  console.log(subjectData);
+  console.log(semesterInfo);
   return (
     <>
       <View>
@@ -98,12 +99,16 @@ export default function StudentCard({ navigation }) {
               {index === 0 || item.semester !== sortedData[index - 1].semester ? (
                 <View style={styles.topContent}>
                   <Text style={styles.item}>{item.semester} სემესტრი</Text>
-                  <View style={styles.topContentInfo}>
-                    {/* <Text style={styles.averageText}>საშუალო - {sortedData.state !== 'current' ? null : semesterInfo[item.semester][1]} </Text> */}
-                    {/* <Text style={styles.creditText}>კრედიტები - {semesterInfo[item.semester][0]}</Text> */}
-                  </View>
+                  {semesterInfo[item.semester] && sortedData.state !== 'current' ? (
+                    <View style={styles.topContentInfo}>
+                      <Text style={styles.averageText}>საშუალო - {item.state == 'current' ? null : semesterInfo[item.semester][1]} </Text>
+                      <Text style={styles.creditText}>კრედიტები - {semesterInfo[item.semester][0]}</Text>
+                    </View>) : null}
                 </View>
               ) : null}
+
+
+
               {index === 0 || item.semester !== sortedData[index - 1].semester ? (
                 <View style={styles.bottomContentHeader}>
                   <Text style={styles.subjectName}>საგანი</Text>
