@@ -10,6 +10,7 @@ export const styles = StyleSheet.create({
     topContentInfo: {
         flexDirection: "row",
         gap: scaled(30),
+        marginBottom: scaled(8),
     },
 
 

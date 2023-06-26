@@ -6,6 +6,7 @@ import { styles } from './StudentCardScreen.style';
 import Header from '../../../components/Header/Header';
 import { useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { scaled } from '../../../components/theme/scaler';
 
 
 export default function StudentCard({ navigation }) {
@@ -50,7 +51,6 @@ export default function StudentCard({ navigation }) {
         setData(subjectData);
         setSortedData(data.sort((a, b) => b.semester - a.semester));
         setSubjectData(subjectData);
-        // console.log(subjectData);
       })
 
 
@@ -61,7 +61,6 @@ export default function StudentCard({ navigation }) {
   }, [sendRequest]);
 
   useEffect(() => {
-    // console.log('cycled');
     let testInfo = {};
     let subjectCount = 0;
     let semester = 1;
@@ -81,56 +80,56 @@ export default function StudentCard({ navigation }) {
         testInfo[semester] = [subjectData[i].credits, subjectData[i].score];
         subjectCount = 1;
       }
+    }
+    if (semester in testInfo) {
       testInfo[semester][1] /= subjectCount;
     }
 
     setSemesterInfo(testInfo);
 
   }, [data]);
-  console.log(subjectData);
-  console.log(semesterInfo);
   return (
-    <>
-      <View>
-        <Header onPress={() => navigation.navigate("insideDetails")} title={'სასწავლო ბარათი'} />
-        <ScrollView>
-          {sortedData.map((item, index) => (
-            <View key={index}>
-              {index === 0 || item.semester !== sortedData[index - 1].semester ? (
-                <View style={styles.topContent}>
-                  <Text style={styles.item}>{item.semester} სემესტრი</Text>
-                  {semesterInfo[item.semester] && sortedData.state !== 'current' ? (
-                    <View style={styles.topContentInfo}>
-                      <Text style={styles.averageText}>საშუალო - {item.state == 'current' ? null : semesterInfo[item.semester][1]} </Text>
-                      <Text style={styles.creditText}>კრედიტები - {semesterInfo[item.semester][0]}</Text>
-                    </View>) : null}
-                </View>
-              ) : null}
+    <View>
+      <Header onPress={() => navigation.navigate("insideDetails")} title={'სასწავლო ბარათი'} />
+      <ScrollView>
+        {sortedData.map((item, index) => (
+          <View key={index}>
+            {index === 0 || item.semester !== sortedData[index - 1].semester ? (
+              <View style={styles.topContent}>
+                <Text style={styles.item}>{item.semester} სემესტრი</Text>
+                {semesterInfo[item.semester] && sortedData.state !== 'current' ? (
+                  <View style={styles.topContentInfo}>
+                    <Text style={styles.averageText}>საშუალო - {item.state == 'current' ? null : semesterInfo[item.semester][1].toFixed(2)} </Text>
+                    <Text style={styles.creditText}>კრედიტები - {item.state == 'current' ? null : semesterInfo[item.semester][0]}</Text>
+                  </View>) : null}
+              </View>
+            ) : null}
 
 
 
-              {index === 0 || item.semester !== sortedData[index - 1].semester ? (
-                <View style={styles.bottomContentHeader}>
-                  <Text style={styles.subjectName}>საგანი</Text>
-                  <Text style={styles.subjectResult}>შედეგი</Text>
-                </View>
-              ) : null}
+            {index === 0 || item.semester !== sortedData[index - 1].semester ? (
+              <View style={styles.bottomContentHeader}>
+                <Text style={styles.subjectName}>საგანი</Text>
+                <Text style={styles.subjectResult}>შედეგი</Text>
+              </View>
+            ) : null}
 
-              <View style={styles.bottomContent}>
-                <View>
-                  <StudentCardRow
-                    name={item.name}
-                    credits={item.credits}
-                    score={item.score}
-                    result={item.result}
-                    state={item.state} />
-                </View>
+            <View style={styles.bottomContent}>
+              <View>
+                <StudentCardRow
+                  name={item.name}
+                  credits={item.credits}
+                  score={item.score}
+                  result={item.result}
+                  state={item.state} />
               </View>
             </View>
-          ))}
-        </ScrollView>
-      </View>
-    </>
+          </View>
+        ))}
+        <View style={{ height: scaled(80) }} />
+      </ScrollView>
+
+    </View>
 
   );
 }
