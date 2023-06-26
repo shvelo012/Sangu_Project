@@ -89,49 +89,47 @@ export default function StudentCard({ navigation }) {
 
   }, [data]);
   return (
-    <>
-      <View>
-        <Header onPress={() => navigation.navigate("insideDetails")} title={'სასწავლო ბარათი'} />
-        <ScrollView>
-          {sortedData.map((item, index) => (
-            <View key={index}>
-              {index === 0 || item.semester !== sortedData[index - 1].semester ? (
-                <View style={styles.topContent}>
-                  <Text style={styles.item}>{item.semester} სემესტრი</Text>
-                  {semesterInfo[item.semester] && sortedData.state !== 'current' ? (
-                    <View style={styles.topContentInfo}>
-                      <Text style={styles.averageText}>საშუალო - {item.state == 'current' ? null : semesterInfo[item.semester][1].toFixed(2)} </Text>
-                      <Text style={styles.creditText}>კრედიტები - {item.state == 'current' ? null : semesterInfo[item.semester][0]}</Text>
-                    </View>) : null}
-                </View>
-              ) : null}
+    <View>
+      <Header onPress={() => navigation.navigate("insideDetails")} title={'სასწავლო ბარათი'} />
+      <ScrollView>
+        {sortedData.map((item, index) => (
+          <View key={index}>
+            {index === 0 || item.semester !== sortedData[index - 1].semester ? (
+              <View style={styles.topContent}>
+                <Text style={styles.item}>{item.semester} სემესტრი</Text>
+                {semesterInfo[item.semester] && sortedData.state !== 'current' ? (
+                  <View style={styles.topContentInfo}>
+                    <Text style={styles.averageText}>საშუალო - {item.state == 'current' ? null : semesterInfo[item.semester][1].toFixed(2)} </Text>
+                    <Text style={styles.creditText}>კრედიტები - {item.state == 'current' ? null : semesterInfo[item.semester][0]}</Text>
+                  </View>) : null}
+              </View>
+            ) : null}
 
 
 
-              {index === 0 || item.semester !== sortedData[index - 1].semester ? (
-                <View style={styles.bottomContentHeader}>
-                  <Text style={styles.subjectName}>საგანი</Text>
-                  <Text style={styles.subjectResult}>შედეგი</Text>
-                </View>
-              ) : null}
+            {index === 0 || item.semester !== sortedData[index - 1].semester ? (
+              <View style={styles.bottomContentHeader}>
+                <Text style={styles.subjectName}>საგანი</Text>
+                <Text style={styles.subjectResult}>შედეგი</Text>
+              </View>
+            ) : null}
 
-              <View style={styles.bottomContent}>
-                <View>
-                  <StudentCardRow
-                    name={item.name}
-                    credits={item.credits}
-                    score={item.score}
-                    result={item.result}
-                    state={item.state} />
-                </View>
+            <View style={styles.bottomContent}>
+              <View>
+                <StudentCardRow
+                  name={item.name}
+                  credits={item.credits}
+                  score={item.score}
+                  result={item.result}
+                  state={item.state} />
               </View>
             </View>
-          ))}
-          <View style={{ height: scaled(80) }} />
-        </ScrollView>
+          </View>
+        ))}
+        <View style={{ height: scaled(80) }} />
+      </ScrollView>
 
-      </View>
-    </>
+    </View>
 
   );
 }
