@@ -4,6 +4,8 @@ import TableSubjectsRow from "../../../components/TableSubjectsRow/TableSubjects
 import { styles } from "./TableScreen.styles";
 import { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import ScreenContent from "../../../components/ScreenContent/ScreenContent";
+import { colors } from "../../../colors/colors";
 
 
 const getStartTime = (time) => {
@@ -66,8 +68,7 @@ export default function Table({ navigation }) {
   }
 
   return (
-    <>
-
+    <ScreenContent backgroundColor={colors.white}>
       <ScrollView>
         <View style={styles.wholeContainer}>
           <View style={styles.mainContainer}>
@@ -103,6 +104,6 @@ export default function Table({ navigation }) {
           </View>
         </View>
       </ScrollView>
-    </>
+    </ScreenContent>
   );
 }

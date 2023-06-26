@@ -3,49 +3,48 @@ import { useState } from 'react';
 import { View, Text, ScrollView } from "react-native";
 import HomeSubjectRow from '../../../components/HomeSubjectRow/HomeSubjectsRow';
 import { styles } from './HomeScreen.styles';
-// import { AuthContext } from '../../../Context/AuthContext';
-// import { useContext } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ScreenContent from '../../../components/ScreenContent/ScreenContent';
 import { colors } from '../../../colors/colors';
-
+import CookieManager from '@react-native-cookies/cookies';
 
 export default function Home({ navigation }) {
   const [data, setData] = useState([]);
-  // const { userToken } = useContext(AuthContext);
   const [sendRequest, SetSendRequest] = useState(true);
 
+  async function fetchData() {
+    try {
+      const userToken = await AsyncStorage.getItem('userToken');
+      const headers = {
+        Cookie: userToken,
+      };
 
-  {
-    sendRequest &&
-      AsyncStorage.getItem('userToken')
-        .then(userToken => {
-          const headers = {
-            Cookie: userToken,
-          };
+      const response = await fetch('https://ums.sangu.edu.ge/subject/student/current', {
+        method: 'GET',
+        headers: headers,
+      });
 
-          return fetch('https://ums.sangu.edu.ge/subject/student/current', {
-            method: 'GET',
-            headers: headers,
-          });
-        })
-        .then(response => {
-          if (response.ok) {
-            SetSendRequest(false);
-            return response.json();
-          } else {
-            throw new Error('Request failed with status code ' + response.status);
-          }
-        })
-        .then(data => {
-          // console.log('Response:', data);
-          setData(data);
-        })
-        .catch(error => {
-          SetSendRequest(false);
-          console.error('Error:', error);
-        });
+      if (!response.ok) {
+        throw new Error('Request failed with status code ' + response.status);
+      }
+
+      SetSendRequest(false);
+
+      const cookies = await CookieManager.get('https://ums.sangu.edu.ge/auth/login');
+      const newToken = cookies["connect.sid"].value;
+      AsyncStorage.setItem('userToken', newToken);
+      console.log(newToken);
+
+      const data = await response.json();
+      setData(data);
+    } catch (error) {
+      SetSendRequest(false);
+      console.error('Error:', error);
+    }
   }
+
+  sendRequest && fetchData();
+
 
   const mass = data;
   let subjectData = [];
