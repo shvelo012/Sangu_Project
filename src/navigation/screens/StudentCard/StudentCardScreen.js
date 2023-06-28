@@ -29,7 +29,6 @@ export default function StudentCard({ navigation }) {
         });
 
         if (response.ok) {
-          SetSendRequest(false);
           const data = await response.json();
 
           let subjectData = [];
@@ -44,58 +43,54 @@ export default function StudentCard({ navigation }) {
             });
           }
 
+          let testInfo = {};
+          let subjectCount = 0;
+          let semester = 1;
+
+          for (let i = 0; i < subjectData.length; i++) {
+            if (semester === subjectData[i].semester) {
+              if (!(semester in testInfo)) {
+                testInfo[semester] = [subjectData[i].credits, subjectData[i].score];
+                subjectCount++;
+              } else {
+                testInfo[semester][0] += subjectData[i].credits;
+                testInfo[semester][1] += subjectData[i].score;
+                subjectCount++;
+              }
+            } else {
+              testInfo[semester][1] /= subjectCount;
+              semester++;
+              testInfo[semester] = [subjectData[i].credits, subjectData[i].score];
+              subjectCount = 1;
+            }
+          }
+          if (semester in testInfo) {
+            testInfo[semester][1] /= subjectCount;
+          }
+
           setData(subjectData);
           setSortedData(data.sort((a, b) => b.semester - a.semester));
           setSubjectData(subjectData);
+          setSemesterInfo(testInfo);
 
           const cookies = await CookieManager.get('https://ums.sangu.edu.ge/auth/login');
           const newToken = cookies["connect.sid"].value;
           AsyncStorage.setItem('userToken', newToken);
-          // console.log(newToken);
         } else {
           throw new Error('Request failed with status code ' + response.status);
         }
       } catch (error) {
-        SetSendRequest(false);
         console.error('Error:', error);
+      } finally {
+        SetSendRequest(false);
       }
     };
 
-    sendRequest && fetchData();
+    if (sendRequest) {
+      fetchData();
+    }
   }, [sendRequest]);
 
-  useEffect(() => {
-    let testInfo = {};
-    let subjectCount = 0;
-    let semester = 1;
-    const calculateSemesterInfo = () => {
-
-      for (let i = 0; i < subjectData.length; i++) {
-        if (semester === subjectData[i].semester) {
-          if (!(semester in testInfo)) {
-            testInfo[semester] = [subjectData[i].credits, subjectData[i].score];
-            subjectCount++;
-          } else {
-            testInfo[semester][0] += subjectData[i].credits;
-            testInfo[semester][1] += subjectData[i].score;
-            subjectCount++;
-          }
-        } else {
-          testInfo[semester][1] /= subjectCount;
-          semester++;
-          testInfo[semester] = [subjectData[i].credits, subjectData[i].score];
-          subjectCount = 1;
-        }
-      }
-      if (semester in testInfo) {
-        testInfo[semester][1] /= subjectCount;
-      }
-
-      setSemesterInfo(testInfo);
-    };
-
-    calculateSemesterInfo();
-  }, [data]);
   return (
     <View>
       <Header onPress={() => navigation.navigate("insideDetails")} title={'სასწავლო ბარათი'} />
