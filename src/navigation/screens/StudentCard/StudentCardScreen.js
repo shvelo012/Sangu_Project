@@ -6,7 +6,7 @@ import Header from '../../../components/Header/Header';
 import { useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { scaled } from '../../../components/theme/scaler';
-
+import CookieManager from '@react-native-cookies/cookies';
 
 export default function StudentCard({ navigation }) {
   const [data, setData] = useState([]);
@@ -47,6 +47,11 @@ export default function StudentCard({ navigation }) {
           setData(subjectData);
           setSortedData(data.sort((a, b) => b.semester - a.semester));
           setSubjectData(subjectData);
+
+          const cookies = await CookieManager.get('https://ums.sangu.edu.ge/auth/login');
+          const newToken = cookies["connect.sid"].value;
+          AsyncStorage.setItem('userToken', newToken);
+          // console.log(newToken);
         } else {
           throw new Error('Request failed with status code ' + response.status);
         }
@@ -60,10 +65,11 @@ export default function StudentCard({ navigation }) {
   }, [sendRequest]);
 
   useEffect(() => {
+    let testInfo = {};
+    let subjectCount = 0;
+    let semester = 1;
     const calculateSemesterInfo = () => {
-      let testInfo = {};
-      let subjectCount = 0;
-      let semester = 1;
+
       for (let i = 0; i < subjectData.length; i++) {
         if (semester === subjectData[i].semester) {
           if (!(semester in testInfo)) {
@@ -90,7 +96,6 @@ export default function StudentCard({ navigation }) {
 
     calculateSemesterInfo();
   }, [data]);
-
   return (
     <View>
       <Header onPress={() => navigation.navigate("insideDetails")} title={'სასწავლო ბარათი'} />
@@ -107,9 +112,6 @@ export default function StudentCard({ navigation }) {
                   </View>) : null}
               </View>
             ) : null}
-
-
-
             {index === 0 || item.semester !== sortedData[index - 1].semester ? (
               <View style={styles.bottomContentHeader}>
                 <Text style={styles.subjectName}>საგანი</Text>

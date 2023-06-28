@@ -33,7 +33,7 @@ export default function Home({ navigation }) {
       const cookies = await CookieManager.get('https://ums.sangu.edu.ge/auth/login');
       const newToken = cookies["connect.sid"].value;
       AsyncStorage.setItem('userToken', newToken);
-      console.log(newToken);
+      // console.log(newToken);
 
       const data = await response.json();
       setData(data);
@@ -49,8 +49,6 @@ export default function Home({ navigation }) {
   for (i = 0; i < data.length; i++) {
     subjectData.push({ subject: data[i].name, lecturer: data[i].lecturer, totalScore: data[i].score, details: data[i].details });
   }
-  // console.log(userToken);
-  let isHeaderRendered = false;
 
   return (
     <ScreenContent backgroundColor={colors.white}>
@@ -59,16 +57,14 @@ export default function Home({ navigation }) {
           <View style={styles.mainContainer}>
             <Text style={styles.header}>მიმდინარე სემესტრი</Text>
           </View>
-          <View style={styles.listContainer}>
+          <View>
+            <View style={styles.subjectInfoResultView}>
+              <Text style={styles.subjectInfoResult}>საგანი</Text>
+              <Text style={styles.subjectInfoResult}>ინფორმაცია</Text>
+              <Text style={styles.subjectInfoResult}>შედეგი</Text>
+            </View>
             {subjectData.map((item, index) => (
               <React.Fragment key={index}>
-                {!isHeaderRendered && (
-                  <View style={styles.subjectInfoResultView}>
-                    <Text style={styles.subjectInfoResult}>საგანი</Text>
-                    <Text style={styles.subjectInfoResult}>ინფორმაცია</Text>
-                    <Text style={styles.subjectInfoResult}>შედეგი</Text>
-                  </View>
-                )}
                 <HomeSubjectRow
                   subject={item.subject}
                   info={[require('../../../img/comment.png'), require('../../../img/edit.png'), require('../../../img/idea.png'),
@@ -76,7 +72,6 @@ export default function Home({ navigation }) {
                   total={item.totalScore}
                   ScoreDetails={item.details}
                 />
-                {isHeaderRendered = true}
               </React.Fragment>
             ))}
           </View>

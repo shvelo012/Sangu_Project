@@ -6,7 +6,7 @@ import { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import ScreenContent from "../../../components/ScreenContent/ScreenContent";
 import { colors } from "../../../colors/colors";
-
+import CookieManager from "@react-native-cookies/cookies";
 
 const getStartTime = (time) => {
   const date = new Date(time);
@@ -41,6 +41,12 @@ export default function Table({ navigation }) {
         SetSendRequest(false);
         const data = await response.json();
         setData(data);
+
+        const cookies = await CookieManager.get('https://ums.sangu.edu.ge/auth/login');
+        const newToken = cookies["connect.sid"].value;
+        AsyncStorage.setItem('userToken', newToken);
+        // console.log(newToken);
+
       } else {
         throw new Error('Request failed with status code ' + response.status);
       }

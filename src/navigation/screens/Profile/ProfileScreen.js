@@ -7,7 +7,7 @@ import { useState } from 'react';
 import Header from '../../../components/Header/Header';
 import ScreenContent from '../../../components/ScreenContent/ScreenContent';
 import { colors } from '../../../colors/colors';
-
+import CookieManager from '@react-native-cookies/cookies';
 
 
 export default function Profile({ navigation }) {
@@ -43,6 +43,11 @@ export default function Profile({ navigation }) {
 
         setStatusColor(infoData.status === 'active' ? 'green' : 'red');
         setInfoData(infoData);
+
+        const cookies = await CookieManager.get('https://ums.sangu.edu.ge/auth/login');
+        const newToken = cookies["connect.sid"].value;
+        AsyncStorage.setItem('userToken', newToken);
+        // console.log(newToken);
       } else {
         throw new Error('Request failed with status code ' + response.status);
       }
