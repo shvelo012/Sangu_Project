@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { Fragment } from 'react';
 import { useState } from 'react';
 import { View, Text, ScrollView } from "react-native";
 import HomeSubjectRow from '../../../components/HomeSubjectRow/HomeSubjectsRow';
@@ -64,7 +64,7 @@ export default function Home({ navigation }) {
               <Text style={styles.subjectInfoResult}>შედეგი</Text>
             </View>
             {subjectData.map((item, index) => (
-              <React.Fragment key={index}>
+              <Fragment key={index}>
                 <HomeSubjectRow
                   subject={item.subject}
                   info={[require('../../../img/comment.png'), require('../../../img/edit.png'), require('../../../img/idea.png'),
@@ -72,7 +72,7 @@ export default function Home({ navigation }) {
                   total={item.totalScore}
                   ScoreDetails={item.details}
                 />
-              </React.Fragment>
+              </Fragment>
             ))}
           </View>
         </View>
