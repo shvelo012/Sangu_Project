@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '../../../colors/colors';
+import { scaled } from '../../../components/theme/scaler';
 
 export const styles = StyleSheet.create({
   wholeContainer: {
@@ -12,20 +13,20 @@ export const styles = StyleSheet.create({
   },
   header: {
     color: 'black',
-    fontSize: 26,
+    fontSize: scaled(30),
     fontWeight: 'bold',
-    marginTop: 30,
+    marginTop: scaled(30),
   },
   subjectInfoResultView: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
     borderBottomWidth: 0.5,
-    paddingHorizontal: 20,
-    paddingVertical: 20,
+    paddingHorizontal: scaled(22),
+    paddingVertical: scaled(22),
   },
   subjectInfoResult: {
-    fontSize: 14,
+    fontSize: scaled(18),
     color: colors.red,
     fontWeight: 'bold',
   },

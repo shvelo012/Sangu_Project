@@ -21,49 +21,45 @@ function getDayOfWeek(day) {
   return daysOfWeek[day];
 }
 
-
 export default function Table({ navigation }) {
   const [data, setData] = useState([]);
   const [sendRequest, SetSendRequest] = useState(true);
-  {
-    sendRequest &&
-      AsyncStorage.getItem('userToken')
-        .then(userToken => {
-          const headers = {
-            Cookie: userToken,
-          };
 
-          return fetch('https://ums.sangu.edu.ge/session/student/list', {
-            method: 'GET',
-            headers: headers,
-          });
-        })
-        .then(response => {
-          if (response.ok) {
-            SetSendRequest(false);
-            return response.json();
-          } else {
-            throw new Error('Request failed with status code ' + response.status);
-          }
-        })
-        .then(data => {
-          // console.log('Response:', data);
-          setData(data);
-        })
-        .catch(error => {
-          SetSendRequest(false);
-          console.error('Error:', error);
-        });
+  async function fetchData() {
+    try {
+      const userToken = await AsyncStorage.getItem('userToken');
+      const headers = {
+        Cookie: userToken,
+      };
+
+      const response = await fetch('https://ums.sangu.edu.ge/session/student/list', {
+        method: 'GET',
+        headers: headers,
+      });
+
+      if (response.ok) {
+        SetSendRequest(false);
+        const data = await response.json();
+        setData(data);
+      } else {
+        throw new Error('Request failed with status code ' + response.status);
+      }
+    } catch (error) {
+      SetSendRequest(false);
+      console.error('Error:', error);
+    }
   }
-  const table = data;
+
+  sendRequest && fetchData();
+
   let tableData = [];
-  for (i = 0; i < table.length; i++) {
+  for (i = 0; i < data.length; i++) {
     tableData.push({
-      subject: table[i].sessionGroup.subjectActivation.subject.name,
-      lecturer: table[i].sessionGroup.lecturer.user.fullName,
-      startTime: table[i].startTime,
-      room: [table[i].room.name, table[i].room.building],
-      day: table[i].dayOfWeek,
+      subject: data[i].sessionGroup.subjectActivation.subject.name,
+      lecturer: data[i].sessionGroup.lecturer.user.fullName,
+      startTime: data[i].startTime,
+      room: [data[i].room.name, data[i].room.building],
+      day: data[i].dayOfWeek,
     });
   }
 

@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text } from "react-native";
 import { styles } from "./StudentCardRow.styles";
 
-const StudentCardRow = ({ credits, name, result, score, state }) => {
+const StudentCardRow = ({ name, result, score, state }) => {
 
 
     return (

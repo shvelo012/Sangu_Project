@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import { useEffect } from 'react';
 import StudentCardRow from '../../../components/StudentCardRow/StudentCardRow';
@@ -17,77 +16,81 @@ export default function StudentCard({ navigation }) {
   const [subjectData, setSubjectData] = useState([]);
 
   useEffect(() => {
-    AsyncStorage.getItem('userToken')
-      .then(userToken => {
+    const fetchData = async () => {
+      try {
+        const userToken = await AsyncStorage.getItem('userToken');
         const headers = {
           Cookie: userToken,
         };
 
-        return fetch('https://ums.sangu.edu.ge/subject/student/list', {
+        const response = await fetch('https://ums.sangu.edu.ge/subject/student/list', {
           method: 'GET',
           headers: headers,
         });
-      })
-      .then(response => {
+
         if (response.ok) {
           SetSendRequest(false);
-          return response.json();
+          const data = await response.json();
+
+          let subjectData = [];
+          for (let i = 0; i < data.length; i++) {
+            subjectData.push({
+              name: data[i].subjectWrapper.name,
+              semester: data[i].semester,
+              credits: data[i].credits,
+              score: data[i].score,
+              result: data[i].result,
+              state: data[i].state,
+            });
+          }
+
+          setData(subjectData);
+          setSortedData(data.sort((a, b) => b.semester - a.semester));
+          setSubjectData(subjectData);
         } else {
           throw new Error('Request failed with status code ' + response.status);
         }
-      })
-      .then(data => {
-        let subjectData = [];
-        for (i = 0; i < data.length; i++) {
-          subjectData.push({
-            name: data[i].subjectWrapper.name,
-            semester: data[i].semester,
-            credits: data[i].credits,
-            score: data[i].score,
-            result: data[i].result,
-            state: data[i].state
-          });
-        }
-        setData(subjectData);
-        setSortedData(data.sort((a, b) => b.semester - a.semester));
-        setSubjectData(subjectData);
-      })
-
-
-      .catch(error => {
+      } catch (error) {
         SetSendRequest(false);
         console.error('Error:', error);
-      });
+      }
+    };
+
+    sendRequest && fetchData();
   }, [sendRequest]);
 
   useEffect(() => {
-    let testInfo = {};
-    let subjectCount = 0;
-    let semester = 1;
-    for (i = 0; i < subjectData.length; i++) {
-      if (semester === subjectData[i].semester) {
-        if (!(semester in testInfo)) {
-          testInfo[semester] = [subjectData[i].credits, subjectData[i].score];
-          subjectCount++;
+    const calculateSemesterInfo = () => {
+      let testInfo = {};
+      let subjectCount = 0;
+      let semester = 1;
+      for (let i = 0; i < subjectData.length; i++) {
+        if (semester === subjectData[i].semester) {
+          if (!(semester in testInfo)) {
+            testInfo[semester] = [subjectData[i].credits, subjectData[i].score];
+            subjectCount++;
+          } else {
+            testInfo[semester][0] += subjectData[i].credits;
+            testInfo[semester][1] += subjectData[i].score;
+            subjectCount++;
+          }
         } else {
-          testInfo[semester][0] += subjectData[i].credits;
-          testInfo[semester][1] += subjectData[i].score;
-          subjectCount++;
+          testInfo[semester][1] /= subjectCount;
+          semester++;
+          testInfo[semester] = [subjectData[i].credits, subjectData[i].score];
+          subjectCount = 1;
         }
-      } else {
-        testInfo[semester][1] /= subjectCount;
-        semester++;
-        testInfo[semester] = [subjectData[i].credits, subjectData[i].score];
-        subjectCount = 1;
       }
-    }
-    if (semester in testInfo) {
-      testInfo[semester][1] /= subjectCount;
-    }
+      if (semester in testInfo) {
+        testInfo[semester][1] /= subjectCount;
+      }
 
-    setSemesterInfo(testInfo);
+      setSemesterInfo(testInfo);
+    };
 
+    calculateSemesterInfo();
   }, [data]);
+
   return (
     <View>
       <Header onPress={() => navigation.navigate("insideDetails")} title={'სასწავლო ბარათი'} />
