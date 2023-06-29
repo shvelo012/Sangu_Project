@@ -9,11 +9,9 @@ import { scaled } from '../../../components/theme/scaler';
 import CookieManager from '@react-native-cookies/cookies';
 
 export default function StudentCard({ navigation }) {
-  const [data, setData] = useState([]);
   const [sendRequest, SetSendRequest] = useState(true);
   const [sortedData, setSortedData] = useState([]);
   const [semesterInfo, setSemesterInfo] = useState({});
-  const [subjectData, setSubjectData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -68,9 +66,7 @@ export default function StudentCard({ navigation }) {
             testInfo[semester][1] /= subjectCount;
           }
 
-          setData(subjectData);
           setSortedData(data.sort((a, b) => b.semester - a.semester));
-          setSubjectData(subjectData);
           setSemesterInfo(testInfo);
 
           const cookies = await CookieManager.get('https://ums.sangu.edu.ge/auth/login');

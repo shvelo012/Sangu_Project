@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { View, ActivityIndicator } from 'react-native';
 import { useContext } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
@@ -6,8 +5,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { AuthContext } from '../Context/AuthContext';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
-// import { useState } from 'react';
 
 
 //screens
@@ -23,10 +20,10 @@ import Documents from './screens/Documents/DocumentsScren';
 import Auth from './screens/Auth/AuthScreen';
 
 
-const homeName = 'Home';
-const detailsName = 'Details';
-const tableName = 'Table';
-const calendarName = 'Calendar';
+const HomeName = 'მთავარი';
+const DetailsName = 'დეტალები';
+const TableName = 'ცხრილი';
+const CalendarName = 'კალენდარი';
 const StudentCardName = 'StudentCard';
 const ProfileName = 'Profile';
 const FinancesName = 'Finances';
@@ -55,28 +52,28 @@ export function DetailsStack() {
 export function Tabs() {
   return (
     <Tab.Navigator
-      initialRouteName={homeName}
+      initialRouteName={HomeName}
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
           let rn = route.name;
 
-          if (rn === homeName) {
+          if (rn === HomeName) {
             iconName = focused ? 'home' : 'home-outline';
-          } else if (rn === detailsName) {
+          } else if (rn === DetailsName) {
             iconName = focused ? 'list' : 'list-outline';
-          } else if (rn === tableName) {
+          } else if (rn === TableName) {
             iconName = focused ? 'tablet-landscape' : 'tablet-landscape-outline';
-          } else if (rn === calendarName) {
+          } else if (rn === CalendarName) {
             iconName = focused ? 'calendar' : 'calendar-outline';
           }
           return <Ionicons name={iconName} size={size} color={color} />
         },
       })} >
-      <Tab.Screen name={homeName} component={Home} options={{ headerShown: false }} />
-      <Tab.Screen name={calendarName} component={Calendar} options={{ headerShown: false }} />
-      <Tab.Screen name={tableName} component={Table} options={{ headerShown: false }} />
-      <Tab.Screen name={detailsName} component={DetailsStack} options={{ headerShown: false }} />
+      <Tab.Screen name={HomeName} component={Home} options={{ headerShown: false }} />
+      <Tab.Screen name={CalendarName} component={Calendar} options={{ headerShown: false }} />
+      <Tab.Screen name={TableName} component={Table} options={{ headerShown: false }} />
+      <Tab.Screen name={DetailsName} component={DetailsStack} options={{ headerShown: false }} />
 
     </Tab.Navigator>
   )

@@ -1,24 +1,24 @@
 import { StyleSheet } from 'react-native';
-
+import { scaled } from '../../../components/theme/scaler';
 
 
 export const styles = StyleSheet.create({
   container: {
-    width:'100%',
+    width: '100%',
     flexDirection: 'column',
   },
   containerItems: {
-    width:'100%',
-    paddingVertical: 40,
+    width: '100%',
+    paddingVertical: scaled(42),
     flexDirection: 'row',
     alignItems: 'center',
   },
 
-  text:{
+  text: {
     width: '75%',
     color: 'black',
-    fontSize: 26,
-    marginLeft:20,
+    fontSize: scaled(28),
+    marginLeft: scaled(22),
     fontWeight: 'bold',
   },
   profile: {
@@ -26,14 +26,14 @@ export const styles = StyleSheet.create({
   },
   exit: {
     borderTopWidth: 0.5,
-    paddingBottom:0,
-    marginBottom:20,
+    paddingBottom: 0,
+    marginBottom: scaled(20),
   },
   images: {
-    marginLeft:20,
-    height: 30,
-    width: 30,
-    marginRight: 10,
+    marginLeft: scaled(22),
+    height: scaled(34),
+    width: scaled(34),
+    marginRight: scaled(12),
   },
 
 });
