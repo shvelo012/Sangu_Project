@@ -6,7 +6,7 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [userToken, setUserToken] = useState();
+  const [userToken, setUserToken] = useState(null);
 
   const login = async (email, password) => {
     setIsLoading(true);
@@ -42,27 +42,27 @@ export const AuthProvider = ({ children }) => {
   };
 
 
-  const logOut = () => {
+  const logOut = async () => {
     setIsLoading(true);
-    AsyncStorage.removeItem('userToken');
+    await AsyncStorage.removeItem('userToken');
     setUserToken(null);
     setIsLoading(false);
   }
 
-  const isLoggedIn = async () => {
-    try {
-      setIsLoading(true);
-      setIsLoading(false);
-    } catch (e) {
-      console.log(`Is logged in error'${e}`);
-    }
-  }
+  // const isLoggedIn = async () => {
+  //   try {
+  //     setIsLoading(true);
+  //     setIsLoading(false);
+  //   } catch (e) {
+  //     console.log(`Is logged in error'${e}`);
+  //   }
+  // }
 
 
-  useEffect(() => {
-    isLoggedIn();
-  }, []
-  );
+  // useEffect(() => {
+  //   isLoggedIn();
+  // }, []
+  // );
 
   return (
     <AuthContext.Provider value={{ login, logOut, isLoading, userToken }}>
