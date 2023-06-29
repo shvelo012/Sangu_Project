@@ -6,8 +6,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { AuthContext } from '../Context/AuthContext';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useState } from 'react';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
+// import { useState } from 'react';
 
 
 //screens

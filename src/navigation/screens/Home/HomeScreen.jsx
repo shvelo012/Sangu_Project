@@ -10,7 +10,7 @@ import CookieManager from '@react-native-cookies/cookies';
 
 export default function Home({ navigation }) {
   const [data, setData] = useState([]);
-  const [sendRequest, SetSendRequest] = useState(true);
+  const [sendRequest, setSendRequest] = useState(true);
 
   async function fetchData() {
     try {
@@ -28,7 +28,7 @@ export default function Home({ navigation }) {
         throw new Error('Request failed with status code ' + response.status);
       }
 
-      SetSendRequest(false);
+      setSendRequest(false);
 
       const cookies = await CookieManager.get('https://ums.sangu.edu.ge/auth/login');
       const newToken = cookies["connect.sid"].value;
@@ -36,19 +36,19 @@ export default function Home({ navigation }) {
       // console.log(newToken);
 
       const data = await response.json();
-      setData(data);
+      const subjectData = [];
+      for (i = 0; i < data.length; i++) {
+        subjectData.push({ subject: data[i].name, lecturer: data[i].lecturer, totalScore: data[i].score, details: data[i].details });
+      }
+      setData(subjectData);
+
     } catch (error) {
-      SetSendRequest(false);
+      setSendRequest(false);
       console.error('Error:', error);
     }
   }
 
   sendRequest && fetchData();
-
-  let subjectData = [];
-  for (i = 0; i < data.length; i++) {
-    subjectData.push({ subject: data[i].name, lecturer: data[i].lecturer, totalScore: data[i].score, details: data[i].details });
-  }
 
   return (
     <ScreenContent backgroundColor={colors.white}>
@@ -63,7 +63,7 @@ export default function Home({ navigation }) {
               <Text style={styles.subjectInfoResult}>ინფორმაცია</Text>
               <Text style={styles.subjectInfoResult}>შედეგი</Text>
             </View>
-            {subjectData.map((item, index) => (
+            {data.map((item, index) => (
               <Fragment key={index}>
                 <HomeSubjectRow
                   subject={item.subject}

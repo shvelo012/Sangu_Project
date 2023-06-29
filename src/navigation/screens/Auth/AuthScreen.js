@@ -17,17 +17,18 @@ import { AuthContext } from '../../../Context/AuthContext';
 
 
 export default function Auth({ navigation }) {
-  const { login1 } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isValid, setIsValid] = useState(true);
-  const [data, setData] = useState('');
-  const [dataCheck, setDataCheck] = useState(null);
-  const [isFailed, setIsFailed] = useState();
+  // const [data, setData] = useState('');
+  // const [dataCheck, setDataCheck] = useState(null);
+  // const [isFailed, setIsFailed] = useState();
 
   const handleLogIn = async (email, password) => {
-    const a = await login1(email, password);
+    login(email, password);
+    // const a = await 
   };
 
   const handlePress = () => {
@@ -87,11 +88,11 @@ export default function Auth({ navigation }) {
                 <Text style={styles.buttonText} >Login</Text>
               </TouchableOpacity>
             </View>
-            {isFailed &&
+            {/* {isFailed &&
               <View>
                 <Text>login Failed</Text>
               </View>
-            }
+            } */}
           </View>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>

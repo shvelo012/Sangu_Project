@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [userToken, setUserToken] = useState();
 
-  const login1 = async (email, password) => {
+  const login = async (email, password) => {
     setIsLoading(true);
 
     try {
@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
       });
 
       if (response.ok) {
-        const data = await response.json();
+        // const data = await response.json();
 
         const cookies = await CookieManager.get('https://ums.sangu.edu.ge/auth/login');
         const userToken = cookies["connect.sid"].value;
@@ -65,7 +65,7 @@ export const AuthProvider = ({ children }) => {
   );
 
   return (
-    <AuthContext.Provider value={{ login1, logOut, isLoading, userToken }}>
+    <AuthContext.Provider value={{ login, logOut, isLoading, userToken }}>
       {children}
     </AuthContext.Provider>
   )
