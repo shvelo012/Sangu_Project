@@ -7,27 +7,19 @@ import {
   Keyboard,
   Linking,
   TouchableOpacity
-
 } from 'react-native';
-// import { StyleSheet } from 'react-native';
-// import { useEffect } from 'react';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
-import { styles } from './Auth.Styles'
+import { styles } from './Auth.Styles';
 import { AuthContext } from '../../../Context/AuthContext';
 
-
 export default function Auth({ navigation }) {
-  const { login1 } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isValid, setIsValid] = useState(true);
-  const [data, setData] = useState('');
-  const [dataCheck, setDataCheck] = useState(null);
-  const [isFailed, setIsFailed] = useState();
+  const [isValid, setIsValid] = useState(false);
 
-  const handleLogIn = async (email, password) => {
-    const a = await login1(email, password);
+  const handleLogIn = (email, password) => {
+    login(email, password);
   };
 
   const handlePress = () => {
@@ -42,13 +34,10 @@ export default function Auth({ navigation }) {
   const handleEmailChange = email => {
     setEmail(email);
     setIsValid(validateEmail(email));
-
-  };
-
+  }
   const handlePasswordChange = password => {
     setPassword(password);
   };
-
   return (
     <View style={{ flex: 1, justifyContent: 'center', backgroundColor: 'white' }}>
       <KeyboardAvoidingView
@@ -56,8 +45,8 @@ export default function Auth({ navigation }) {
         style={styles.container}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.inner}>
-            <Text style={styles.header}>Login</Text>
-            <Text style={styles.txt} >Email</Text>
+            <Text style={styles.header}>ავტორიზაცია</Text>
+            <Text style={styles.txt} >ელ. ფოსტა</Text>
             <TextInput
               placeholder='Example@sangu.edu.ge'
               style={styles.textInput}
@@ -65,33 +54,28 @@ export default function Auth({ navigation }) {
               value={email}
               keyboardType='email-address'
             />
-            <Text style={styles.txt}>Password</Text>
+            <Text style={styles.txt}>პაროლი</Text>
             <TextInput
               placeholder='********'
               style={styles.textInput}
               onChangeText={handlePasswordChange}
               value={password}
               secureTextEntry={true}
-              
+
             />
             <View style={{ alignItems: 'flex-start' }}>
-              <Text onPress={handlePress} style={styles.forgoTxt} >Forgot password?</Text>
+              <Text onPress={handlePress} style={styles.forgoTxt} >დაგავიწყდა პაროლი?</Text>
             </View>
             <View>
-              {/* disabled={!password || !email } */}
-              <TouchableOpacity style={styles.btnContainer} onPress={() => handleLogIn(email, password)}>
-
-                {/* onPress={() => login()}  */}
-
-                {/* onPress={() => handleLogIn(email, password)} */}
-                <Text style={styles.buttonText} >Login</Text>
+              <TouchableOpacity style={styles.btnContainer} disabled={!isValid} onPress={() => handleLogIn(email, password)}>
+                <Text style={styles.buttonText} >შესვლა</Text>
               </TouchableOpacity>
             </View>
-            {isFailed &&
+            {/* {isFailed &&
               <View>
                 <Text>login Failed</Text>
               </View>
-            }
+            } */}
           </View>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
@@ -99,5 +83,3 @@ export default function Auth({ navigation }) {
   );
 
 }
-
-

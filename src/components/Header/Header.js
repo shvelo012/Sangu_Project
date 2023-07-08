@@ -19,7 +19,6 @@ const styles = {
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    // backgroundColor: '#f2f2f2',
     backgroundColor: 'white',
     padding: 10,
     width: '100%',
@@ -29,7 +28,6 @@ const styles = {
     marginRight: scaled(10),
     borderColor: 'black',
     borderWidth: 2,
-    backgroundColor: 'red',
     padding: scaled(3),
 
   },

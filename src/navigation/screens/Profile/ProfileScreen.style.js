@@ -1,38 +1,35 @@
 import { StyleSheet } from "react-native";
+import { scaled } from "../../../components/theme/scaler";
 
 export const styles = StyleSheet.create({
-  //NIka mixedavs <3
   container: {
-    marginBottom:0,
-    // backgroundColor:'red'
+    marginBottom: 0,
   },
   topContent: {
-    marginTop:20,
-    // backgroundColor:'red',
-    marginBottom:28,
+    marginTop: scaled(22),
+    marginBottom: scaled(28),
     alignSelf: "center",
   },
   nameStyle: {
-    fontSize: 24,
-    color:'black',
-    fontWeight:'bold',
+    fontSize: scaled(26),
+    color: 'black',
+    fontWeight: 'bold',
   },
   statusStyle: {
-    marginTop: 10,
+    marginTop: scaled(12),
     justifyContent: "center",
     alignSelf: "center",
     fontWeight: "bold",
   },
-  infoContentStyle:{
-    fontSize:16,
-    fontWeight:"bold",
-    color:'black',
+  infoContentStyle: {
+    fontSize: scaled(18),
+    fontWeight: "bold",
+    color: 'black',
   },
-  lastContentStyle:{
+  lastContentStyle: {
   },
-  lastElement:{
-    marginBottom:0,
-    borderBottomWidth:0,
-
+  lastElement: {
+    marginBottom: 0,
+    borderBottomWidth: 0,
   }
 });

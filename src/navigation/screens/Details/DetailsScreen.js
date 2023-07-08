@@ -1,8 +1,9 @@
-import * as React from "react";
 import { useContext } from "react";
 import { AuthContext } from "../../../Context/AuthContext";
 import { View, Text, Linking, Image, TouchableOpacity, ScrollView } from "react-native";
 import { styles } from "./DetailsScreen.styles";
+import ScreenContent from "../../../components/ScreenContent/ScreenContent";
+import { colors } from "../../../colors/colors";
 
 
 const handlePress = () => {
@@ -15,27 +16,8 @@ export default function Details({ navigation }) {
 
   const { logOut } = useContext(AuthContext);
 
-
-  // const handleLogOut = async () => {
-  //   await clearAsyncStorage();
-  //   navigation.reset({
-  //     index: 0,
-  //     routes: [{ name: "Auth" }],
-  //   });
-  // };
-
-  // async function clearAsyncStorage() {
-  //   try {
-  //     await AsyncStorage.clear();
-  //     console.log("AsyncStorage successfully cleared!");
-  //   } catch (error) {
-  //     console.error("Error clearing AsyncStorage: ", error);
-  //   }
-  // }
-
-
   return (
-    <ScrollView>
+    <ScreenContent backgroundColor={colors.white}>
       <View style={styles.container}>
         <TouchableOpacity style={[styles.containerItems, styles.profile]} onPress={() => navigation.navigate("Profile")}>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -80,6 +62,6 @@ export default function Details({ navigation }) {
           </View>
         </TouchableOpacity>
       </View>
-    </ScrollView>
+    </ScreenContent>
   );
 }
